@@ -8,7 +8,7 @@ const userSchema = new Schema(
       type: String,
       required: "Se requiere un nombre de ususario",
       maxLength: [16, "Largo máximo 16 caracteres"],
-      minlength: [3, "Largo minimo 16 caracteres"],
+      minlength: [3, "Largo minimo 3 caracteres"],
       match: [
         /^[a-z0-9]+$/,
         "El nombre de usuario debe ser en minuscula y sin espacios",
@@ -26,7 +26,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Se requiere una contraseña"],
       maxLength: [16, "Largo máximo 16 caracteres"],
-      minlength: [3, "Largo minimo 16 caracteres"],
+      minlength: [8, "Largo minimo 8 caracteres"],
     },
   },
   {

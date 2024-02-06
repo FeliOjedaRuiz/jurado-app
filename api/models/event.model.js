@@ -5,6 +5,8 @@ const eventSchema = new Schema(
   {
     name: {
       type: String,
+      maxLength: [24, "Largo máximo 24 caracteres"],
+      minlength: [3, "Largo minimo 3 caracteres"],
       require: "Se requiere un nombre para el evento",
     },
     admin: {
@@ -18,7 +20,13 @@ const eventSchema = new Schema(
         ref: "User",
       },
     ],
-    categorys: [String],
+    categorys: [
+      {
+        type: String,
+        maxLength: [16, "Largo máximo 16 caracteres"],
+        minlength: [3, "Largo minimo 3 caracteres"],
+      },
+    ],
     open: {
       type: Boolean,
       default: false,

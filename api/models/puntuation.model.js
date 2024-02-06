@@ -14,7 +14,8 @@ const puntuationSchema = new Schema(
       required: "Se requiere un grupo",
     },
     points: {
-      type: mongoose.Schema.Types.Mixed,
+      type: Object,
+      required: true,
     },
   },
   {
