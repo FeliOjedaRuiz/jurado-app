@@ -27,5 +27,12 @@ const groupSchema = new Schema(
   }
 );
 
-const Product = mongoose.model("Group", groupSchema);
-module.exports = Product;
+groupSchema.virtual("puntuation", {
+  ref: "Puntuation",
+  localField: "_id",
+  foreignField: "group",
+  justOne: false,
+});
+
+const Group = mongoose.model("Group", groupSchema);
+module.exports = Group;
