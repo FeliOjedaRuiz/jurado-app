@@ -24,3 +24,13 @@ module.exports.isAdmin = (req, res, next) => {
     next(createError(401, "Unauthorized"));
   }
 };
+
+module.exports.isJury = (req, res, next) => {
+  if (
+    req.user.juryEvents.includes(req.group.event)
+  ) {
+    next();
+  } else {
+    next(createError(401, "Unauthorized"));
+  }
+};

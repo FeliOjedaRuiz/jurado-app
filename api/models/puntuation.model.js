@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 const puntuationSchema = new Schema(
   {
+    event: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Event",
+      required: "Se requiere un evento",
+    },
     jury: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
