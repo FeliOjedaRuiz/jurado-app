@@ -4,7 +4,7 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const createError = require("http-errors");
-//** SECURE.MID */
+const secure = require('./middlewares/secure.mid')
 
 //** Load configuration */
 require("./config/db.config");
@@ -15,6 +15,7 @@ const cors = require('./config/cors.config');
 app.use(cors);
 app.use(express.json())
 app.use(logger("dev"));
+app.use(secure.cleanBody);
 
 const api = require("./config/routes.config");
 app.use("/api/v1", api);

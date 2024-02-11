@@ -9,17 +9,6 @@ const eventSchema = new Schema(
       minlength: [3, "Largo minimo 3 caracteres"],
       require: "Se requiere un nombre para el evento",
     },
-    admin: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: "Se requiere un administrador para el evento",
-    },
-    juries: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
     categorys: [
       {
         type: String,
@@ -54,6 +43,20 @@ eventSchema.virtual("groups", {
   ref: "Group",
   localField: "_id",
   foreignField: "event",
+  justOne: false,
+});
+
+userSchema.virtual("admin", {
+  ref: "User",
+  localField: "_id",
+  foreignField: "adminEvents",
+  justOne: false,
+});
+
+userSchema.virtual("juries", {
+  ref: "User",
+  localField: "_id",
+  foreignField: "juryEvents",
   justOne: false,
 });
 

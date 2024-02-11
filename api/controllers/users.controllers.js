@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+const Event = require("../models/event.model");
 const createError = require("http-errors");
 const jwt = require("jsonwebtoken");
 
@@ -18,27 +19,36 @@ module.exports.list = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.detail = (req, res, next) => {
-  User.findById(req.params.id)
-    .then((user) => res.json(user))
-    .catch(next);
-};
-
 module.exports.delete = (req, res, next) => {
   User.deleteOne({ _id: req.params.id })
     .then(() => res.status(204).send())
     .catch(next);
 };
 
-module.exports.update = (req, res, next) => {
-  User.findByIdAndUpdate(req.params.id, req.body)
-    .then((user) => {
-      User.findById(user.id)
-        .then((user) => res.json(user))
-        .catch(next);
-    })
-    .catch(next);
-};
+// module.exports.listJuries = (req, res, next) => {
+//   Event.findById(req.params.id)
+//     .populate("juries")
+//     .then((event) => {
+//       res.json(event.juries);
+//     })
+//     .catch(next);
+// };
+
+// module.exports.detail = (req, res, next) => {
+//   User.findById(req.params.id)
+//     .then((user) => res.json(user))
+//     .catch(next);
+// };
+
+// module.exports.update = (req, res, next) => {
+//   User.findByIdAndUpdate(req.params.id, req.body)
+//     .then((user) => {
+//       User.findById(user.id)
+//         .then((user) => res.json(user))
+//         .catch(next);
+//     })
+//     .catch(next);
+// };
 
 module.exports.login = (req, res, next) => {
   User.findOne({ username: req.body.username })

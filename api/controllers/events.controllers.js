@@ -1,4 +1,5 @@
 const Event = require("../models/event.model");
+const User = require("../models/event.model");
 
 module.exports.create = (req, res, next) => {
   Event.create(req.body)
@@ -6,10 +7,20 @@ module.exports.create = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.list = (req, res, next) => {
-  Event.find()
-    .then((events) => {
-      res.json(events);
+module.exports.listAdmin = (req, res, next) => {
+  User.find(req.user.id)
+    .populate("adminEvents")
+    .then((user) => {
+      res.json(user.adminEvents);
+    })
+    .catch(next);
+};
+
+module.exports.listJury = (req, res, next) => {
+  User.find(req.user.id)
+    .populate("juryEvents")
+    .then((user) => {
+      res.json(user.juryEvents);
     })
     .catch(next);
 };

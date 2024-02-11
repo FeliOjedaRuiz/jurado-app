@@ -28,6 +28,18 @@ const userSchema = new Schema(
       maxLength: [16, "Largo máximo 16 caracteres"],
       minlength: [8, "Largo minimo 8 caracteres"],
     },
+    adminEvents: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Event",
+      },
+    ],
+    juryEvents: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Event",
+      },
+    ],
   },
   {
     timestamps: true,
@@ -65,20 +77,6 @@ userSchema.pre("save", function (next) {
 userSchema.methods.checkPassword = function (password) {
   return bcrypt.compare(password, this.password);
 };
-
-userSchema.virtual("adminEvents", {
-  ref: "Event",
-  localField: "_id",
-  foreignField: "admin",
-  justOne: false,
-});
-
-userSchema.virtual("juryEvents", {
-  ref: "Event",
-  localField: "_id",
-  foreignField: "juries",
-  justOne: false,
-});
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
