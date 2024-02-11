@@ -12,7 +12,10 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.list = (req, res, next) => {
-  User.find()
+  const criterial = {
+    $or: [{ email: req.params.search }, { userName: req.params.search }],
+  };
+  User.find(criterial)
     .then((users) => {
       res.json(users);
     })
@@ -25,20 +28,28 @@ module.exports.delete = (req, res, next) => {
     .catch(next);
 };
 
-// module.exports.listJuries = (req, res, next) => {
-//   Event.findById(req.params.id)
-//     .populate("juries")
-//     .then((event) => {
-//       res.json(event.juries);
-//     })
-//     .catch(next);
-// };
+module.exports.listJuries = (req, res, next) => {
+  Event.findById(req.event.id)
+    .populate("juries")
+    .then((event) => {
+      res.json(event.juries);
+    })
+    .catch(next);
+};
 
-// module.exports.detail = (req, res, next) => {
-//   User.findById(req.params.id)
-//     .then((user) => res.json(user))
-//     .catch(next);
-// };
+module.exports.detail = (req, res, next) => {
+  User.findById(req.params.id)
+    .then((user) => res.json(user))
+    .catch(next);
+};
+
+module.exports.update = (req, res, next) => {
+  Object.assign(req.user, req.body);
+  req.user
+    .save()
+    .then((user) => res.json(user))
+    .catch(next);
+};
 
 // module.exports.update = (req, res, next) => {
 //   User.findByIdAndUpdate(req.params.id, req.body)

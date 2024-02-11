@@ -3,7 +3,7 @@ const Event = require("../models/event.model");
 
 module.exports.create = (req, res, next) => {
   if (req.body) {
-    req.body.event = req.event.id 
+    req.body.event = req.event.id;
   }
   Group.create(req.body)
     .then((group) => res.status(201).json(group))

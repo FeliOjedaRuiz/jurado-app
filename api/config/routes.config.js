@@ -13,14 +13,15 @@ const secure = require("../middlewares/secure.mid");
 
 // USERS
 router.post("/users", users.create);
-router.get("/users", secure.auth, users.list);
-// router.get("/users/:eventId", secure.auth, /*eventsMid.admin,*/ users.listJuries);
-// router.patch('/users/:userId/:id', /*secure.auth, usersMid.exists, establishmentsMid.owner, usersMid.isAdmin, */ users.update);
+router.get("/users/:search", secure.auth, users.list);
+router.get("/users/:id", secure.auth, usersMid.isOwner, users.detail);
+router.get("/users/:eventId", secure.auth, eventsMid.exists, eventsMid.isAdmin, users.listJuries);
+router.patch('/users/:id', secure.auth, usersMid.exists, usersMid.isOwner, users.update);
 router.delete(
   "/users/:userId",
   secure.auth,
   usersMid.exists,
-  usersMid.canDelete,
+  usersMid.isOwner,
   users.delete
 );
 

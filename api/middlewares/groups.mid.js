@@ -16,9 +16,7 @@ module.exports.exists = (req, res, next) => {
 };
 
 module.exports.isAdmin = (req, res, next) => {
-  if (
-    req.user.adminEvents.includes(req.group.event)
-  ) {
+  if (req.user.adminEvents.includes(req.group.event)) {
     next();
   } else {
     next(createError(401, "Unauthorized"));
@@ -26,9 +24,7 @@ module.exports.isAdmin = (req, res, next) => {
 };
 
 module.exports.isJury = (req, res, next) => {
-  if (
-    req.user.juryEvents.includes(req.group.event)
-  ) {
+  if (req.user.juryEvents.includes(req.group.event)) {
     next();
   } else {
     next(createError(401, "Unauthorized"));

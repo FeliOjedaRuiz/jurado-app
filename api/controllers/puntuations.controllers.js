@@ -3,9 +3,9 @@ const Group = require("../models/group.model");
 
 module.exports.create = (req, res, next) => {
   if (req.body) {
-    req.body.group = req.group.id 
-    req.body.jury = req.user.id
-    req.body.event = req.group.event
+    req.body.group = req.group.id;
+    req.body.jury = req.user.id;
+    req.body.event = req.group.event;
   }
   Puntuation.create(req.body)
     .then((puntuation) => res.status(201).json(puntuation))
@@ -21,10 +21,10 @@ module.exports.list = (req, res, next) => {
 };
 
 module.exports.detail = (req, res, next) => {
-  const criterial = { group: req.group.id, jury: req.user.id}
+  const criterial = { $and: [{ group: req.group.id }, { jury: req.user.id }] };
   Puntuation.find(criterial)
     .then((puntuation) => res.json(puntuation))
-    .catch(next)
+    .catch(next);
 };
 
 module.exports.update = (req, res, next) => {
@@ -36,14 +36,14 @@ module.exports.update = (req, res, next) => {
 };
 
 module.exports.delete = (req, res, next) => {
-  Puntuation.deleteOne({ _id: req.puntuation.id })    
+  Puntuation.deleteOne({ _id: req.puntuation.id })
     .then(() => res.status(204).send())
-    .catch(next)
+    .catch(next);
 };
 
 module.exports.deleteAll = (req, res, next) => {
-  const criterial = { event: req.event.id }
-  Puntuation.deleteMany(criterial)   
+  const criterial = { event: req.event.id };
+  Puntuation.deleteMany(criterial)
     .then(() => res.status(204).send())
-    .catch(next)
+    .catch(next);
 };
