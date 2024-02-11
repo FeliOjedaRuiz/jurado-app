@@ -29,8 +29,11 @@ router.patch('/events/:id', secure.auth, eventsMid.exists, eventsMid.isAdmin, ev
 router.delete('/events/:id', secure.auth, eventsMid.exists, eventsMid.isAdmin, events.delete);
 
 //GROUPS
-router.post("/groups", secure.auth, eventsMid.isAdmin, groups.create);
-
+router.post("/groups/:eventId", secure.auth, eventsMid.exists, eventsMid.isAdmin, groups.create);
+router.get('/groups/:eventId', secure.auth, eventsMid.exists, eventsMid.isMember, groups.list);
+router.get('/groups/:id', secure.auth, groupsMid.exists, groupMid.isAdmin, groups.detail);
+router.patch('/groups/:id', secure.auth, groupsMid.exists, groupMid.isAdmin, groups.update);
+router.delete('/groups/:id', secure.auth, groupsMid.exists, groupMid.isAdmin, groups.delete);
 
 //PUNTUATIONS
 router.post("/puntuations", puntuations.create);

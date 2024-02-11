@@ -1,7 +1,5 @@
 const Event = require("../models/event.model");
 const createError = require("http-errors");
-const User = require("../models/user.model");
-const e = require("express");
 
 module.exports.exists = (req, res, next) => {
   const eventId = req.params.eventId || req.params.id;

@@ -2,13 +2,16 @@ const Group = require("../models/group.model");
 const Event = require("../models/event.model");
 
 module.exports.create = (req, res, next) => {
+  if (req.body) {
+    req.body.event = req.event.id 
+  }
   Group.create(req.body)
     .then((group) => res.status(201).json(group))
     .catch(next);
 };
 
 module.exports.list = (req, res, next) => {
-  Event.findById(req.event)
+  Event.findById(req.event.id)
     .populate("groups")
     .then((event) => res.json(event.groups))
     .catch(next);
