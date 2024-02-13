@@ -46,14 +46,14 @@ eventSchema.virtual("groups", {
   justOne: false,
 });
 
-userSchema.virtual("admin", {
+eventSchema.virtual("admin", {
   ref: "User",
   localField: "_id",
   foreignField: "adminEvents",
   justOne: false,
 });
 
-userSchema.virtual("juries", {
+eventSchema.virtual("juries", {
   ref: "User",
   localField: "_id",
   foreignField: "juryEvents",

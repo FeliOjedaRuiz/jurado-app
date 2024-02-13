@@ -7,8 +7,8 @@ const puntuations = require("../controllers/puntuations.controllers");
 
 const usersMid = require("../middlewares/users.mid");
 const eventsMid = require("../middlewares/events.mid");
-// const groupsMid = require('../middlewares/groups.mid');
-// const puntuationsMid = require('../middlewares/puntuations.mid');
+const groupsMid = require('../middlewares/groups.mid');
+const puntuationsMid = require('../middlewares/puntuations.mid');
 const secure = require("../middlewares/secure.mid");
 
 // USERS
@@ -72,21 +72,21 @@ router.get(
   "/groups/:id",
   secure.auth,
   groupsMid.exists,
-  groupMid.isAdmin,
+  groupsMid.isAdmin,
   groups.detail
 );
 router.patch(
   "/groups/:id",
   secure.auth,
   groupsMid.exists,
-  groupMid.isAdmin,
+  groupsMid.isAdmin,
   groups.update
 );
 router.delete(
   "/groups/:id",
   secure.auth,
   groupsMid.exists,
-  groupMid.isAdmin,
+  groupsMid.isAdmin,
   groups.delete
 );
 
@@ -94,41 +94,41 @@ router.delete(
 router.post(
   "/puntuations/:groupId",
   secure.auth,
-  groupMid.exists,
-  groupMid.isJury,
+  groupsMid.exists,
+  groupsMid.isJury,
   puntuations.create
 );
 router.get(
   "/puntuations/:groupId",
   secure.auth,
-  groupMid.exists,
-  groupMid.isAdmin,
+  groupsMid.exists,
+  groupsMid.isAdmin,
   puntuations.list
 );
 router.get(
   "/puntuations/:groupId/:userId",
   secure.auth,
-  groupMid.isJury,
+  groupsMid.isJury,
   puntuations.detail
 );
 router.patch(
   "/puntuations/:id",
   secure.auth,
   puntuationsMid.exists,
-  groupMid.isJury,
+  groupsMid.isJury,
   puntuations.update
 );
 router.delete(
   "/puntuations/:id",
   secure.auth,
   puntuationsMid.exists,
-  groupMid.isJury,
+  groupsMid.isJury,
   puntuations.delete
 );
 router.delete(
   "/puntuations/:eventId",
   secure.auth,
-  eventMid.isAdmin,
+  eventsMid.isAdmin,
   puntuations.deleteAll
 );
 
