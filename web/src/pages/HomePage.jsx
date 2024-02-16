@@ -1,11 +1,12 @@
-import { Sidebar } from "../components/sidebar/sidebar"
+import Layout from "../components/layouts/LayoutLogued";
+
 
 function HomePage() {
   return (
     <>
-      <Sidebar/>
+      <Layout/>
     </>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;
