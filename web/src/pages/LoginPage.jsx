@@ -15,7 +15,7 @@ function LoginPage() {
       setMobile(false);
     }
   }, [changeSize]);
-  window.onresize = function (event) {
+  window.onresize = function () {
     setChageSize(!changeSize);
     console.log("resize");
   };
