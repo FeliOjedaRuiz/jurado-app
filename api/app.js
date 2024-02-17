@@ -32,6 +32,8 @@ app.use((error, req, res, next) => {
   ) {
     const resourceName = error.model().constructor.modelName;
     error = createError(404, `${resourceName} not found`);
+  } else if (error.code === 11000) {
+    error = createError(409, `El nombre de usuario o contraseña ya existen`);
   } else if (!error.status) {
     error = createError(500, error);
   }
