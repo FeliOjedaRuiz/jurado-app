@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Typography,
   Button,
@@ -11,38 +11,30 @@ import {
 import {
   UserCircleIcon,
   ChevronDownIcon,
-  Cog6ToothIcon,
-  InboxArrowDownIcon,
-  LifebuoyIcon,
+ 
   PowerIcon,
 } from "@heroicons/react/24/solid";
+import { AuthContext } from "../../contexts/AuthStore";
 
 // profile menu component
 const profileMenuItems = [
   {
-    label: "My Profile",
+    label: "Mi Perfil",
     icon: UserCircleIcon,
   },
+  // {
+  //   label: "Edit Profile",
+  //   icon: Cog6ToothIcon,
+  // },
   {
-    label: "Edit Profile",
-    icon: Cog6ToothIcon,
-  },
-  {
-    label: "Inbox",
-    icon: InboxArrowDownIcon,
-  },
-  {
-    label: "Help",
-    icon: LifebuoyIcon,
-  },
-  {
-    label: "Sign Out",
+    label: "Cerrar sesión",
     icon: PowerIcon,
   },
 ];
 
 export function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { user } = useContext(AuthContext);
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -51,14 +43,14 @@ export function ProfileMenu() {
       <MenuHandler>
         <Button
           variant="text"
-          color=""
+          color="black"
           className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
         >
-          <Typography variant="h6" className="ml-3">LeoMolina</Typography>
+          <Typography variant="h6" className="ml-3 text-xs">{user.username}</Typography>
           <Avatar
             variant="circular"
-            size="sm"
-            alt="tania andrew"
+            size="xs"
+            alt="foto de perfil"
             className="border border-gray-900 p-0.5"
             src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
           />

@@ -24,30 +24,26 @@ function UsersFom() {
       navigate("/login");
     } catch (error) {
       if (error.response.status === 409) {
-        setServerError("El nombre de usuario o contraseña ya existen.")
+        setServerError("El nombre de usuario o contraseña ya existen.");
       } else {
         const errors = error.response?.data?.errors;
-      if (errors) {
-        console.error(error.message, errors);
-        Object.keys(errors).forEach((inputName) =>
-          setError(inputName, { message: errors[inputName] })
-        );
-      } else {
-        console.error(error);
-        setServerError(error.message);
+        if (errors) {
+          console.error(error.message, errors);
+          Object.keys(errors).forEach((inputName) =>
+            setError(inputName, { message: errors[inputName] })
+          );
+        } else {
+          console.error(error);
+          setServerError(error.message);
+        }
       }
-      }
-      
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onUserSubmit)} className="w-full">
       <div className="mb-6">
-        <label
-          for="username"
-          className="block mb-2 text-sm font-medium text-gray-900"
-        >
+        <label className="block mb-2 text-sm font-medium text-gray-900">
           Nombre de usuario:
         </label>
         <input
@@ -64,10 +60,7 @@ function UsersFom() {
           </div>
         )}
       </div>
-      <label
-        for="email"
-        className="block mb-2 text-sm font-medium text-gray-900"
-      >
+      <label className="block mb-2 text-sm font-medium text-gray-900">
         Email:
       </label>
       <div className="mb-6">
@@ -85,10 +78,7 @@ function UsersFom() {
           </div>
         )}
       </div>
-      <label
-        for="password"
-        className="block mb-2 text-sm font-medium text-gray-900"
-      >
+      <label className="block mb-2 text-sm font-medium text-gray-900">
         Contraseña:
       </label>
       <div className="mb-6">

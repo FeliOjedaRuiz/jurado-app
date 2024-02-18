@@ -38,10 +38,7 @@ function UsersLogin() {
       <form onSubmit={handleSubmit(onLoginSubmit)}>
         {serverError && <div>{serverError}</div>}
         <div className="mb-6">
-          <label
-            for="username"
-            className="block mb-2 text-sm font-medium text-gray-900"
-          >
+          <label className="block mb-2 text-sm font-medium text-gray-900">
             Nombre de usuario
           </label>
           <input
@@ -60,14 +57,11 @@ function UsersLogin() {
           )}
         </div>
         <div className="mb-6">
-          <label
-            for="password"
-            className="block mb-2 text-sm font-medium text-gray-900"
-          >
+          <label className="block mb-2 text-sm font-medium text-gray-900">
             Contraseña
           </label>
           <input
-            type="text"
+            type="password"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5"
             placeholder="password"
             {...register("password", {

@@ -22,7 +22,7 @@ function LoginPage() {
   return (
     <LayoutLogin>
       <div className="flex h-[calc(100vh-58px)]">
-      <div className="w-full flex flex-col  lg:w-1/4 bg-gray-100 p-8">
+      <div className="w-full flex flex-col lg:w-1/4 bg-gray-100 p-8">
           <div>
             <h1 className="text-4xl text-teal-800 font-black">Inicia sesión</h1>
           </div>          

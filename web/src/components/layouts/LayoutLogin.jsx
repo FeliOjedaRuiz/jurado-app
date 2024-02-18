@@ -1,4 +1,3 @@
-import { children } from "react";
 import { StickyNavbar } from "../navbar/StickyNavbar";
 
 function LayoutLogin({ children }) {
