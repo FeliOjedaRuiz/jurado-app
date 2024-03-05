@@ -1,6 +1,6 @@
 import { StickyNavbar } from "../navbar/StickyNavbar";
 
-function LayoutLogin({ children }) {
+function NavbarLayout({ children }) {
   return (
     <div className="w-screen flex flex-col">
       <StickyNavbar />
@@ -9,4 +9,4 @@ function LayoutLogin({ children }) {
   );
 }
 
-export default LayoutLogin;
+export default NavbarLayout;

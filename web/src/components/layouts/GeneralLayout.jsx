@@ -1,17 +1,18 @@
 import EventsList from "../events/events-list/EventsList";
 import { StickyNavbar } from "../navbar/StickyNavbar";
 
-function LayoutLoged({ children }) {
+function GeneralLayout({ children }) {
+  
   return (
     <div className="w-screen flex flex-col">
       <StickyNavbar />
       <div className="flex h-[calc(100vh-58px)] w-full">
-        <EventsList />
-        {children}    
+      <div className="hidden lg:flex w-full max-w-sm"><EventsList /></div>
         
+        {children}
       </div>
     </div>
   );
 }
 
-export default LayoutLoged;
+export default GeneralLayout;

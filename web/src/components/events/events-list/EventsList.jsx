@@ -2,7 +2,7 @@ import { AvatarDefault } from "../../../avatar/AvatarDefault";
 
 function EventsList() {
   return (
-    <div className="w-1/3 bg-gray-100 p-6">
+    <div className=" w-full bg-gray-100 p-6">
       <h4 className="font-medium ">Tus eventos</h4>
       <div className="mt-4">
         <div className="flex items-center mt-3">
