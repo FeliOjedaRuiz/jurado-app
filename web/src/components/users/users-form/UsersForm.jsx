@@ -43,13 +43,13 @@ function UsersFom() {
   return (
     <form onSubmit={handleSubmit(onUserSubmit)} className="w-full">
       <div className="mb-6">
-        <label className="block mb-2 text-sm font-medium text-gray-900">
+        <label className="block mb-2 text-base font-medium text-gray-900">
           Nombre de usuario:
         </label>
         <input
           type="text"
           placeholder="Username"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg block w-full p-2"
           {...register("username", {
             required: "Se necesita un nombre de usuario.",
           })}
@@ -60,14 +60,14 @@ function UsersFom() {
           </div>
         )}
       </div>
-      <label className="block mb-2 text-sm font-medium text-gray-900">
+      <label className="block mb-2 text-base font-medium text-gray-900">
         Email:
       </label>
       <div className="mb-6">
         <input
           type="email"
           placeholder="Email"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg block w-full p-2"
           {...register("email", {
             required: "Se necesita un email.",
           })}
@@ -78,14 +78,14 @@ function UsersFom() {
           </div>
         )}
       </div>
-      <label className="block mb-2 text-sm font-medium text-gray-900">
+      <label className="block mb-2 text-base font-medium text-gray-900">
         Contraseña:
       </label>
       <div className="mb-6">
         <input
           type="password"
           placeholder="Password"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg block w-full p-2"
           {...register("password", {
             required: "Se necesita una contraseña.",
           })}
