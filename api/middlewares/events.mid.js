@@ -17,8 +17,8 @@ module.exports.exists = (req, res, next) => {
 
 module.exports.isMember = (req, res, next) => {
   if (
-    req.user.adminEvents.includes(req.event.id) ||
-    req.user.juryEvents.includes(req.event.id)
+    `${req.event.admin}` === req.user.id ||
+    req.event.juries.includes(req.user.id)
   ) {
     next();
   } else {

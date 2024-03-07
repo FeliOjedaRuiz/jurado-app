@@ -5,6 +5,7 @@ import RegisterPage from "./pages/RegisterPage";
 import AuthStore from "./contexts/AuthStore";
 import EventsPage from "./pages/EventsPage";
 import CreateEventPage from "./pages/CreateEventPage";
+import EventDetailPage from "./pages/EventDetailPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/create-event" element={<CreateEventPage />} />
+        <Route path="/events/:eventId" element={<EventDetailPage />} />
       </Routes>
       </AuthStore>
     </>

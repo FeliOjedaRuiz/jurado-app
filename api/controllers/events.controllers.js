@@ -14,6 +14,7 @@ module.exports.create = (req, res, next) => {
 
 module.exports.listAdmin = (req, res, next) => {
   Event.find({ admin: req.user.id })
+    .populate("groups")
     .then((events) => {
       res.json(events);
     })
@@ -21,7 +22,7 @@ module.exports.listAdmin = (req, res, next) => {
 };
 
 module.exports.listJury = (req, res, next) => {
-  Event.find({ _id: { $in: req.user.juryEvents } })
+  Event.find({ juries: { $in: req.user.id } })
     .then((events) => {
       res.json(events);
     })
@@ -29,7 +30,7 @@ module.exports.listJury = (req, res, next) => {
 };
 
 module.exports.detail = (req, res, next) => {
-  Event.findById(req.params.id)
+  Event.findById(req.event.id)
     .then((event) => {
       res.json(event);
     })
