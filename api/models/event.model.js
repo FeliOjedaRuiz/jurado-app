@@ -5,7 +5,7 @@ const eventSchema = new Schema(
   {
     name: {
       type: String,
-      maxLength: [24, "Largo máximo 24 caracteres"],
+      maxLength: [36, "Largo máximo 36 caracteres"],
       minlength: [3, "Largo minimo 3 caracteres"],
       require: "Se requiere un nombre para el evento",
     },
@@ -24,6 +24,17 @@ const eventSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    admin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: "Se requiere un administrador",
+    },
+    juries: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     timestamps: true,
@@ -46,19 +57,6 @@ eventSchema.virtual("groups", {
   justOne: false,
 });
 
-eventSchema.virtual("admin", {
-  ref: "User",
-  localField: "_id",
-  foreignField: "adminEvents",
-  justOne: false,
-});
-
-eventSchema.virtual("juries", {
-  ref: "User",
-  localField: "_id",
-  foreignField: "juryEvents",
-  justOne: false,
-});
 
 const Event = mongoose.model("Event", eventSchema);
 module.exports = Event;

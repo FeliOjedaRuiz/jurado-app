@@ -2,25 +2,28 @@ const Event = require("../models/event.model");
 const User = require("../models/event.model");
 
 module.exports.create = (req, res, next) => {
+  if (req.body) {
+    req.body.admin = req.user.id;
+  }
   Event.create(req.body)
-    .then((event) => res.status(201).json(event))
+    .then((event) => {
+      res.status(201).json(event);
+    })
     .catch(next);
 };
 
 module.exports.listAdmin = (req, res, next) => {
-  User.find(req.user.id)
-    .populate("adminEvents")
-    .then((user) => {
-      res.json(user.adminEvents);
+  Event.find({ admin: req.user.id })
+    .then((events) => {
+      res.json(events);
     })
     .catch(next);
 };
 
 module.exports.listJury = (req, res, next) => {
-  User.find(req.user.id)
-    .populate("juryEvents")
-    .then((user) => {
-      res.json(user.juryEvents);
+  Event.find({ _id: { $in: req.user.juryEvents } })
+    .then((events) => {
+      res.json(events);
     })
     .catch(next);
 };

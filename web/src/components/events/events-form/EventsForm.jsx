@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import eventsService from "../../../services/events";
+import { AuthContext } from "../../../contexts/AuthStore";
 
 function EventsForm() {
   const {
@@ -13,6 +14,7 @@ function EventsForm() {
   } = useForm({ mode: "onBlur" });
   const [serverError, setServerError] = useState();
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext) 
 
   console.debug(`Tags: ${watch("tags")}`);
 
@@ -20,6 +22,7 @@ function EventsForm() {
     try {
       setServerError();
       console.debug("Creating event...");
+      event.admin = user.id
       event = await eventsService.create(event);
       navigate("/events");
     } catch (error) {

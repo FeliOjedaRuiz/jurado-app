@@ -28,18 +28,6 @@ const userSchema = new Schema(
       maxLength: [16, "Largo máximo 16 caracteres"],
       minlength: [8, "Largo minimo 8 caracteres"],
     },
-    adminEvents: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Event",
-      },
-    ],
-    juryEvents: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Event",
-      },
-    ],
   },
   {
     timestamps: true,
@@ -55,6 +43,13 @@ const userSchema = new Schema(
     },
   }
 );
+
+userSchema.virtual("events", {
+  ref: "Event",
+  localField: "_id",
+  foreignField: "admin",
+  justOne: false,
+});
 
 userSchema.pre("save", function (next) {
   const user = this;

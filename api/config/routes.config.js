@@ -29,15 +29,15 @@ router.post("/login", users.login);
 
 //EVENTS
 router.post("/events", secure.auth, events.create);
-router.get("/events/:userId", secure.auth, events.listAdmin);
-router.get("/events/:userId", secure.auth, events.listJury);
-router.get(
-  "/events/:id",
-  secure.auth,
-  eventsMid.exists,
-  eventsMid.isMember,
-  events.detail
-);
+router.get("/events/admin/:id", secure.auth, events.listAdmin);
+// router.get("/events/:userId", secure.auth, events.listJury);
+// router.get(
+//   "/events/:id",
+//   secure.auth,
+//   eventsMid.exists,
+//   eventsMid.isMember,
+//   events.detail
+// );
 router.patch(
   "/events/:id",
   secure.auth,
