@@ -14,7 +14,7 @@ function EventDetailPage() {
         setEvent(event);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [eventId]);
 
   return (
     <GeneralLayout>

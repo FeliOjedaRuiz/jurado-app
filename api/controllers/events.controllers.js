@@ -31,6 +31,9 @@ module.exports.listJury = (req, res, next) => {
 
 module.exports.detail = (req, res, next) => {
   Event.findById(req.event.id)
+    .populate("admin")
+    .populate("groups")
+    .populate("juries")
     .then((event) => {
       res.json(event);
     })

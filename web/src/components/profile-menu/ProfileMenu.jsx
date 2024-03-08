@@ -11,32 +11,35 @@ import {
 import {
   UserCircleIcon,
   ChevronDownIcon,
- 
   PowerIcon,
 } from "@heroicons/react/24/solid";
 import { AuthContext } from "../../contexts/AuthStore";
 
-// profile menu component
-const profileMenuItems = [
-  {
-    label: "Mi Perfil",
-    icon: UserCircleIcon,
-  },
-  // {
-  //   label: "Edit Profile",
-  //   icon: Cog6ToothIcon,
-  // },
-  {
-    label: "Cerrar sesión",
-    icon: PowerIcon,
-  },
-];
-
 export function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const closeMenu = () => setIsMenuOpen(false);
+
+  // profile menu component
+  const profileMenuItems = [
+    {
+      label: "Mi Perfil",
+      icon: UserCircleIcon,
+      acction: closeMenu,
+    },
+    // {
+    //   label: "Edit Profile",
+    //   icon: Cog6ToothIcon,
+    // },
+    {
+      label: "Cerrar sesión",
+      icon: PowerIcon,
+      acction: logout,
+    },
+  ];
+
+  
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -46,7 +49,9 @@ export function ProfileMenu() {
           color="black"
           className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
         >
-          <Typography variant="h6" className="ml-3 text-xs">{user.username}</Typography>
+          <Typography variant="h6" className="ml-3 text-xs">
+            {user.username}
+          </Typography>
           <Avatar
             variant="circular"
             size="xs"
@@ -63,12 +68,12 @@ export function ProfileMenu() {
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
-        {profileMenuItems.map(({ label, icon }, key) => {
+        {profileMenuItems.map(({ label, icon, acction }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;
           return (
             <MenuItem
               key={label}
-              onClick={closeMenu}
+              onClick={acction}
               className={`flex items-center gap-2 rounded ${
                 isLastItem
                   ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
