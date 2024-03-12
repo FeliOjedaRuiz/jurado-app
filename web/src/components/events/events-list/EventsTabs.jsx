@@ -6,19 +6,20 @@ import {
   Tab,
   TabPanel,
 } from "@material-tailwind/react";
+import EventsList from "./EventsList";
  
-export function UnderlineTabs() {
-  const [activeTab, setActiveTab] = React.useState("html");
+export function EventsTabs() {
+  const [activeTab, setActiveTab] = React.useState("Admin");
   const data = [
     {
       label: "Administrador",
       value: "Admin",
-      desc: ``,
+      desc: <EventsList/>,
     },
     {
       label: "Jurado",
-      value: "Jury",
-      desc: ``,
+      value: "Jurys",
+      desc: "",
     },
   ];
   return (
@@ -35,19 +36,19 @@ export function UnderlineTabs() {
             key={value}
             value={value}
             onClick={() => setActiveTab(value)}
-            className={activeTab === value ? "text-gray-900 w-32" : "w-32"}
+            className={activeTab === value ? "text-gray-900 font-bold w-1/3 lg:w-32" : "w-1/3 lg:w-32"}
           >
             {label}
           </Tab>
         ))}
       </TabsHeader>
-      {/* <TabsBody>
+      <TabsBody>
         {data.map(({ value, desc }) => (
           <TabPanel key={value} value={value}>
             {desc}
           </TabPanel>
         ))}
-      </TabsBody> */}
+      </TabsBody>
     </Tabs>
   );
 }

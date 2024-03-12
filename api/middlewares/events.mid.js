@@ -27,7 +27,7 @@ module.exports.isMember = (req, res, next) => {
 };
 
 module.exports.isAdmin = (req, res, next) => {
-  if (req.user.adminEvents.includes(req.event.id)) {
+  if (req.event.admin == req.user.id) {
     next();
   } else {
     next(createError(401, "Unauthorized"));

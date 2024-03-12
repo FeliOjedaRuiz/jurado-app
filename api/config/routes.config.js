@@ -69,21 +69,21 @@ router.get(
   groups.list
 );
 router.get(
-  "/groups/:id",
+  "/groups/:groupId",
   secure.auth,
   groupsMid.exists,
   groupsMid.isAdmin,
   groups.detail
 );
 router.patch(
-  "/groups/:id",
+  "/groups/:groupId",
   secure.auth,
   groupsMid.exists,
   groupsMid.isAdmin,
   groups.update
 );
 router.delete(
-  "/groups/:id",
+  "/groups/:groupId",
   secure.auth,
   groupsMid.exists,
   groupsMid.isAdmin,

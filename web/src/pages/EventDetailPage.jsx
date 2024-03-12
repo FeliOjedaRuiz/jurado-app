@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import GeneralLayout from "../components/layouts/GeneralLayout";
 import { useParams } from "react-router-dom";
 import eventsService from "../services/events.js";
+import { EventDetailTabs } from "../components/events/events-detail/EventDetailTabs.jsx";
 
 function EventDetailPage() {
   const { eventId } = useParams();
@@ -20,10 +21,11 @@ function EventDetailPage() {
     <GeneralLayout>
       
       {event && (
-        <div className="flex flex-col bg-gray-200 w-full p-8 items-center lg:justify-center">
-          <div className="font-bold text-2xl lg:text-4xl text-teal-800 mb-12 mt-4 lg:mt-0 lg:mb-8">
+        <div className="flex flex-col bg-gray-100 w-full">
+          <div className="font-bold text-base xl:text-2xl p-2 xl:p-4 border-b-2 border-teal-500 bg-gray-200  text-teal-800 ">
             <p>{event.name}</p>
           </div>
+          <EventDetailTabs/>
 
           <div></div>
         </div>
