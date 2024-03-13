@@ -12,7 +12,7 @@ module.exports.create = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.listAdmin = (req, res, next) => {
+module.exports.listAdminEvents = (req, res, next) => {
   Event.find({ admin: req.user.id })
     .populate("groups")
     .then((events) => {
@@ -21,7 +21,7 @@ module.exports.listAdmin = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.listJury = (req, res, next) => {
+module.exports.listJuryEvents = (req, res, next) => {
   Event.find({ juries: { $in: req.user.id } })
     .then((events) => {
       res.json(events);
@@ -46,10 +46,12 @@ module.exports.delete = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.update = (req, res, next) => {
-  Object.assign(req.event, req.body);
-  req.event
-    .save()
-    .then((event) => res.json(event))
+module.exports.updateJuries = (req, res, next) => {
+  let preJuries = [];
+  preJuries = req.event.juries;
+  Event.findByIdAndUpdate(req.event.id, {
+    juries: [...preJuries, req.newJury.id],
+  })
+    .then((newEvent) => res.status(201).json(newEvent))
     .catch(next);
 };

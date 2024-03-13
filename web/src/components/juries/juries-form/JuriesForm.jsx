@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import groupsService from "../../../services/groups.js";
+import eventService from "../../../services/events"
 
-function GroupsForm({ onGroupCreation }) {
+
+function JuriesForm({ onJuryAdd }) {
   const {
     register,
     handleSubmit,
@@ -16,13 +17,13 @@ function GroupsForm({ onGroupCreation }) {
 
   console.debug(`Tags: ${watch("tags")}`);
 
-  const onGroupSubmit = async (group) => {
+  const onEventSubmit = async (event) => {
     try {
       setServerError();
-      console.debug("Creating group...");
-      group.event = eventId;
-      group = await groupsService.create(group, eventId);
-      onGroupCreation();
+      console.debug("Updateng event");
+      console.log()
+      event = await eventService.addJury(eventId, event);
+      onJuryAdd();
     } catch (error) {
       if (error.response.status === 409) {
         setServerError("El nombre de usuario o contraseña ya existen.");
@@ -41,24 +42,25 @@ function GroupsForm({ onGroupCreation }) {
     }
   };
 
+
   return (
-    <form onSubmit={handleSubmit(onGroupSubmit)} className="w-full max-w-sm">
+    <form onSubmit={handleSubmit(onEventSubmit)} className="w-full max-w-sm">
       <div className="mb-3">
         <label className="block mb-1 pl-1 text-base font-medium text-gray-900">
-          Nombre del grupo:
+          Email :
         </label>
         <div className="flex">
           <input
-            type="text"
-            placeholder="Nombre del grupo"
+            type="email"
+            placeholder="Email del jurado"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg block w-full p-2"
-            {...register("name", {
-              required: "Se necesita un nombre para el grupo",
+            {...register("email", {
+              required: "Se necesita un email para agregar al jurado",
             })}
           />
           <button
             type="submit"
-            className="text-white bg-teal-500 hover:bg-teal-700 w-10 h-10 ml-3 focus:ring-2 focus:outline-none focus:ring-teal-300 px-4 rounded-full text-center"
+            className="text-white text-xl bg-teal-500 hover:bg-teal-700 w-10 h-10 ml-3 focus:ring-2 focus:outline-none focus:ring-teal-300 px-4 rounded-full text-center"
           >
           +
         
@@ -73,7 +75,7 @@ function GroupsForm({ onGroupCreation }) {
         <div className="text-red-800 text-sm text-center">{serverError}</div>
       )}
     </form>
-  );
+  )
 }
 
-export default GroupsForm;
+export default JuriesForm

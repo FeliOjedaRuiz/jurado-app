@@ -11,13 +11,11 @@ module.exports.create = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.list = (req, res, next) => {
-  const criterial = {
-    $or: [{ email: req.params.search }, { userName: req.params.search }],
-  };
-  User.find(criterial)
-    .then((users) => {
-      res.json(users);
+module.exports.listJuries = (req, res, next) => {
+  Event.findById(req.paramas.eventId)
+    .populate("juries")
+    .then((event) => {
+      res.json(event.juries);
     })
     .catch(next);
 };

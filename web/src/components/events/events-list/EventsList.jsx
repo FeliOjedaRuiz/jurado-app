@@ -10,7 +10,7 @@ function EventsList() {
 
   useEffect(() => {
     eventsService
-      .listAdmin(user.id)
+      .listAdminEvents(user.id)
       .then((events) => {
         setEvents(events);
       })

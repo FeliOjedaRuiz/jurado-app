@@ -20,3 +20,16 @@ module.exports.isOwner = (req, res, next) => {
     next(createError(401, "Unauthorized"));
   }
 };
+
+module.exports.juryExists = (req, res, next) => {
+  User.findOne({ email: req.body.email })  
+    .then((user) => {
+      if (user) {
+        req.newJury = user
+        next();
+      } else {
+        next(createError(404, "User not found"));
+      }
+    })
+    .catch(next);
+};

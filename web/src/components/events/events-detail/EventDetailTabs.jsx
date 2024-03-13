@@ -7,6 +7,7 @@ import {
   TabPanel,
 } from "@material-tailwind/react";
 import GroupComponent from "../../groups/group-component/GroupComponent";
+import JuriesComponent from "../../juries/juries-component/JuriesComponent";
  
 export function EventDetailTabs() {
   const [activeTab, setActiveTab] = React.useState("groups");
@@ -19,7 +20,7 @@ export function EventDetailTabs() {
     {
       label: "Jurados",
       value: "jurys",
-      desc: ``,
+      desc: <JuriesComponent/>,
     },
     {
       label: "Puntuaciones",

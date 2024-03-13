@@ -7,30 +7,28 @@ const puntuations = require("../controllers/puntuations.controllers");
 
 const usersMid = require("../middlewares/users.mid");
 const eventsMid = require("../middlewares/events.mid");
-const groupsMid = require('../middlewares/groups.mid');
-const puntuationsMid = require('../middlewares/puntuations.mid');
+const groupsMid = require("../middlewares/groups.mid");
+const puntuationsMid = require("../middlewares/puntuations.mid");
 const secure = require("../middlewares/secure.mid");
 
 // USERS
-router.post("/users", users.create);
-router.get("/users/:search", secure.auth, users.list);
-router.get("/users/:id", secure.auth, usersMid.isOwner, users.detail);
+router.post("/users", users.create)
+// router.get("/users/:id", secure.auth, usersMid.isOwner, users.detail);
 router.get("/users/:eventId", secure.auth, eventsMid.exists, eventsMid.isAdmin, users.listJuries);
-router.patch('/users/:id', secure.auth, usersMid.exists, usersMid.isOwner, users.update);
-router.delete(
-  "/users/:userId",
-  secure.auth,
-  usersMid.exists,
-  usersMid.isOwner,
-  users.delete
-);
-
+// router.patch('/users/:id', secure.auth, usersMid.exists, usersMid.isOwner, users.update);
+// router.delete(
+//   "/users/:userId",
+//   secure.auth,
+//   usersMid.exists,
+//   usersMid.isOwner,
+//   users.delete
+// );
 router.post("/login", users.login);
 
 //EVENTS
 router.post("/events", secure.auth, events.create);
-router.get("/events/admin/:id", secure.auth, events.listAdmin);
-router.get("/events/juries/:id", secure.auth, events.listJury);
+router.get("/events/admin/:id", secure.auth, events.listAdminEvents);
+router.get("/events/juries/:id", secure.auth, events.listJuryEvents);
 router.get(
   "/events/:eventId",
   secure.auth,
@@ -39,11 +37,12 @@ router.get(
   events.detail
 );
 router.patch(
-  "/events/:id",
+  "/events/:eventId",
   secure.auth,
   eventsMid.exists,
   eventsMid.isAdmin,
-  events.update
+  usersMid.juryExists,
+  events.updateJuries
 );
 router.delete(
   "/events/:id",

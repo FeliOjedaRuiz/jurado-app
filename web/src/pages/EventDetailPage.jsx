@@ -19,18 +19,14 @@ function EventDetailPage() {
 
   return (
     <GeneralLayout>
-      
       {event && (
         <div className="flex flex-col bg-gray-100 w-full">
           <div className="font-bold text-base xl:text-2xl p-2 xl:p-4 border-b-2 border-teal-500 bg-gray-200  text-teal-800 ">
             <p>{event.name}</p>
           </div>
-          <EventDetailTabs/>
-
-          <div></div>
+          <EventDetailTabs />
         </div>
       )}
-      
     </GeneralLayout>
   );
 }

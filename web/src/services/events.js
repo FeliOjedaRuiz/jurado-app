@@ -2,12 +2,15 @@ import http from "./base-api";
 
 const create = (event) => http.post("/events", event);
 
-const listAdmin = (id) => http.get(`/events/admin/${id}`)
+const listAdminEvents = (id) => http.get(`/events/admin/${id}`);
 
-const detail = (eventId) => http.get(`/events/${eventId}`)
+const detail = (eventId) => http.get(`/events/${eventId}`);
+
+const addJury = (eventId, event) => http.patch(`/events/${eventId}`, event);
 
 export default {
   create,
-  listAdmin,
+  listAdminEvents,
   detail,
+  addJury,
 };
