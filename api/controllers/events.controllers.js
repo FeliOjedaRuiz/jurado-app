@@ -46,6 +46,14 @@ module.exports.delete = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.update = (req, res, next) => {
+  Object.assign(req.event, req.body);
+  req.event
+    .save()
+    .then((event) => res.json(event))
+    .catch(next);
+};
+
 module.exports.updateJuries = (req, res, next) => {
   let preJuries = [];
   preJuries = req.event.juries;

@@ -6,6 +6,7 @@ import AuthStore from "./contexts/AuthStore";
 import EventsPage from "./pages/EventsPage";
 import CreateEventPage from "./pages/CreateEventPage";
 import EventDetailPage from "./pages/EventDetailPage";
+import EventUpdatePage from './pages/EventUpdatePage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/events" element={<EventsPage />} />
         <Route path="/create-event" element={<CreateEventPage />} />
         <Route path="/events/:eventId" element={<EventDetailPage />} />
+        <Route path="/events-update/:eventId" element={<EventUpdatePage />} />
       </Routes>
       </AuthStore>
     </>

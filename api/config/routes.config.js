@@ -41,6 +41,13 @@ router.patch(
   secure.auth,
   eventsMid.exists,
   eventsMid.isAdmin,
+  events.update
+);
+router.patch(
+  "/events/:eventId/juries",
+  secure.auth,
+  eventsMid.exists,
+  eventsMid.isAdmin,
   usersMid.juryExists,
   events.updateJuries
 );

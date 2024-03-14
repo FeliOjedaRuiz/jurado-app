@@ -25,8 +25,8 @@ function JuriesForm({ onJuryAdd }) {
       event = await eventService.addJury(eventId, event);
       onJuryAdd();
     } catch (error) {
-      if (error.response.status === 409) {
-        setServerError("El nombre de usuario o contraseña ya existen.");
+      if (error.response.status === 404) {
+        setServerError("No hay ningún usuario registrado con ese email, porfavor chequea bien el email.");
       } else {
         const errors = error.response?.data?.errors;
         if (errors) {

@@ -24,7 +24,7 @@ function UsersFom() {
       navigate("/login");
     } catch (error) {
       if (error.response.status === 409) {
-        setServerError("El nombre de usuario o contraseña ya existen.");
+        setServerError("El nombre de usuario y/o email ya están registrados");
       } else {
         const errors = error.response?.data?.errors;
         if (errors) {

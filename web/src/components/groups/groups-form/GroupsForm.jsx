@@ -24,19 +24,15 @@ function GroupsForm({ onGroupCreation }) {
       group = await groupsService.create(group, eventId);
       onGroupCreation();
     } catch (error) {
-      if (error.response.status === 409) {
-        setServerError("El nombre de usuario o contraseña ya existen.");
+      const errors = error.response?.data?.errors;
+      if (errors) {
+        console.error(error.message, errors);
+        Object.keys(errors).forEach((inputName) =>
+          setError(inputName, { message: errors[inputName] })
+        );
       } else {
-        const errors = error.response?.data?.errors;
-        if (errors) {
-          console.error(error.message, errors);
-          Object.keys(errors).forEach((inputName) =>
-            setError(inputName, { message: errors[inputName] })
-          );
-        } else {
-          console.error(error);
-          setServerError(error.message);
-        }
+        console.error(error);
+        setServerError(error.message);
       }
     }
   };
@@ -60,8 +56,7 @@ function GroupsForm({ onGroupCreation }) {
             type="submit"
             className="text-white bg-teal-500 hover:bg-teal-700 w-10 h-10 ml-3 focus:ring-2 focus:outline-none focus:ring-teal-300 px-4 rounded-full text-center"
           >
-          +
-        
+            +
           </button>
         </div>
         {errors.name && (

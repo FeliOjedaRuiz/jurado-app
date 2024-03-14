@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import eventsService from "../../../services/events";
 import { AuthContext } from "../../../contexts/AuthStore";
+import eventsService from "../../../services/events";
 
-function EventsForm() {
+function EventsUpdate({ event }) {
   const {
     register,
     handleSubmit,
@@ -14,17 +14,20 @@ function EventsForm() {
   } = useForm({ mode: "onBlur" });
   const [serverError, setServerError] = useState();
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  const eventId = event.id;
+
+
+  
 
   console.debug(`Tags: ${watch("tags")}`);
 
   const onEventSubmit = async (event) => {
     try {
       setServerError();
-      console.debug("Creating event...");
-      event.admin = user.id;
-      event = await eventsService.create(event);
-      navigate("/events");
+      console.debug("Updating event...");
+      event = await eventsService.update(eventId, event);
+      navigate(`/events/${eventId}`);
     } catch (error) {
       const errors = error.response?.data?.errors;
       if (errors) {
@@ -47,7 +50,7 @@ function EventsForm() {
         </label>
         <input
           type="text"
-          placeholder="Nombre del evento"
+          placeholder={event.name}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg block w-full p-2"
           {...register("name", {
             required: "Se necesita un nombre para el evento",
@@ -65,10 +68,10 @@ function EventsForm() {
         type="submit"
         className="text-white bg-teal-500 hover:bg-teal-700 focus:ring-2 focus:outline-none focus:ring-teal-300 mt-3 rounded-full w-full px-4 py-1.5 text-center "
       >
-        Crear
+        Guardar
       </button>
     </form>
   );
 }
 
-export default EventsForm;
+export default EventsUpdate;
