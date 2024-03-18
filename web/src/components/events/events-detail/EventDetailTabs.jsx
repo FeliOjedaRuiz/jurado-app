@@ -8,6 +8,7 @@ import {
 } from "@material-tailwind/react";
 import GroupComponent from "../../groups/group-component/GroupComponent";
 import JuriesComponent from "../../juries/juries-component/JuriesComponent";
+import PuntuationsComponent from "../../puntuations/puntuations-component/PuntuationsComponent";
  
 export function EventDetailTabs() {
   const [activeTab, setActiveTab] = React.useState("groups");
@@ -25,7 +26,7 @@ export function EventDetailTabs() {
     {
       label: "Puntuaciones",
       value: "puntuations",
-      desc: ``,
+      desc: <PuntuationsComponent/>,
     },
   ];
   return (

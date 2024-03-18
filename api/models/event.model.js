@@ -9,13 +9,10 @@ const eventSchema = new Schema(
       minlength: [3, "Largo minimo 3 caracteres"],
       require: "Se requiere un nombre para el evento",
     },
-    categorys: [
-      {
-        type: String,
-        maxLength: [16, "Largo máximo 16 caracteres"],
-        minlength: [3, "Largo minimo 3 caracteres"],
-      },
-    ],
+    categorys: {
+      type: Array,
+      default: ["Interpretación", "Música", "Letra", "Puesta en escena"],
+    },
     open: {
       type: Boolean,
       default: false,

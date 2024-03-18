@@ -60,10 +60,9 @@ function JuriesForm({ onJuryAdd }) {
           />
           <button
             type="submit"
-            className="text-white text-xl bg-teal-500 hover:bg-teal-700 w-10 h-10 ml-3 focus:ring-2 focus:outline-none focus:ring-teal-300 px-4 rounded-full text-center"
+            className="text-white bg-teal-500 hover:bg-teal-700 text-2xl flex items-center justify-center w-10 h-10 ml-3 focus:ring-2 focus:outline-none focus:ring-teal-300 px-4 rounded-full text-center"
           >
-          +
-        
+            +
           </button>
         </div>
         {errors.name && (
