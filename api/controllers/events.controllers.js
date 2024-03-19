@@ -23,6 +23,7 @@ module.exports.listAdminEvents = (req, res, next) => {
 
 module.exports.listJuryEvents = (req, res, next) => {
   Event.find({ juries: { $in: req.user.id } })
+    .populate("groups")
     .then((events) => {
       res.json(events);
     })

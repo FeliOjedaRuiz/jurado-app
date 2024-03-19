@@ -7,6 +7,7 @@ import {
   TabPanel,
 } from "@material-tailwind/react";
 import EventsList from "./EventsList";
+import EventListJury from "./EventListJury";
  
 export function EventsTabs() {
   const [activeTab, setActiveTab] = React.useState("Admin");
@@ -19,7 +20,7 @@ export function EventsTabs() {
     {
       label: "Jurado",
       value: "Jurys",
-      desc: "",
+      desc: <EventListJury />,
     },
   ];
   return (

@@ -11,7 +11,6 @@ function PuntuationsComponent() {
     eventServices.detail(eventId)
     .then((event) => {
       setEnable(event.open)
-      console.log(`Evento ${event.open}`)
     })
   }, [])
   

@@ -27,8 +27,8 @@ router.post("/login", users.login);
 
 //EVENTS
 router.post("/events", secure.auth, events.create);
-router.get("/events/admin/:id", secure.auth, events.listAdminEvents);
-router.get("/events/juries/:id", secure.auth, events.listJuryEvents);
+router.get("/events/admin/:userId", secure.auth, events.listAdminEvents);
+router.get("/events/jury/:userId", secure.auth, events.listJuryEvents);
 router.get(
   "/events/:eventId",
   secure.auth,
