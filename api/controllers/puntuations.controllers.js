@@ -12,6 +12,18 @@ module.exports.create = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.exists = (req, res, next) => {
+  Puntuation.findOne({
+    $and: [
+      { event: req.params.eventId },
+      { jury: req.params.juryId },
+      { group: req.params.groupId },
+    ],
+  })
+    .then((puntuation) => res.json(puntuation))
+    .catch(next);
+};
+
 module.exports.list = (req, res, next) => {
   const groupId = req.params.groupId || req.group.id;
   Group.findById(groupId)

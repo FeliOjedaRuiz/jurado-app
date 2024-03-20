@@ -19,7 +19,7 @@ function PuntuationsComponent() {
     setEnable(!enable)
     const event = {}
     event.open = enable
-    eventServices.enableVoting(eventId, event)
+    eventServices.update(eventId, event)
     .then((event) => {
       console.log(`Votación habilitada: ${event.open}`)
     })

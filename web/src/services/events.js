@@ -13,9 +13,6 @@ const update = (eventId, event) => http.patch(`/events/${eventId}`, event);
 const addJury = (eventId, event) =>
   http.patch(`/events/${eventId}/juries`, event);
 
-const enableVoting = (eventId, event) =>
-  http.patch(`/events/${eventId}/voting`, event);
-
 export default {
   create,
   listAdminEvents,
@@ -23,5 +20,4 @@ export default {
   detail,
   update,
   addJury,
-  enableVoting,
 };

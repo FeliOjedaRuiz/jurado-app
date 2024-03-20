@@ -35,7 +35,7 @@ module.exports.isAdmin = (req, res, next) => {
 };
 
 module.exports.isJury = (req, res, next) => {
-  if (req.user.juryEvents.includes(req.event.id)) {
+  if (req.event.juries.includes(req.user.id)) {
     next();
   } else {
     next(createError(401, "Unauthorized"));

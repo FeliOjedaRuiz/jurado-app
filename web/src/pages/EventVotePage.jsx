@@ -7,12 +7,14 @@ import PuntuationCard from "../components/puntuations/puntuation-card/Puntuation
 function EventVotePage() {
   const { eventId } = useParams();
   const [event, setEvent] = useState({});
+  const [groups, setGroups] = useState([])
 
   useEffect(() => {
     eventsService
       .detail(eventId)
       .then((event) => {
         setEvent(event);
+        setGroups(event.groups)
       })
       .catch((error) => console.error(error));
   }, [eventId]);
@@ -29,7 +31,10 @@ function EventVotePage() {
             </Link> */}
           </div>
           <div className="flex flex-col w-full items-center justify-center">
-            <PuntuationCard />
+          {groups.map((group) => (
+          <PuntuationCard group={group} key={group.id} />
+        ))}
+            
           </div>
         </div>
       )}

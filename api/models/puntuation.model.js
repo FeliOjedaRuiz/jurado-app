@@ -18,10 +18,22 @@ const puntuationSchema = new Schema(
       ref: "Group",
       required: "Se requiere un grupo",
     },
-    points: {
-      type: Object,
+    interpretation: {
+      type: Number,
       required: true,
     },
+    music: {
+      type: Number,
+      required: true,
+    },
+    leter: {
+      type: Number,
+      required: true,
+    },
+    staging: {
+      type: Number,
+      required: true,
+    }, 
   },
   {
     timestamps: true,

@@ -44,13 +44,6 @@ router.patch(
   events.update
 );
 router.patch(
-  "/events/:eventId/voting",
-  secure.auth,
-  eventsMid.exists,
-  eventsMid.isAdmin,
-  events.update
-);
-router.patch(
   "/events/:eventId/juries",
   secure.auth,
   eventsMid.exists,
@@ -58,13 +51,13 @@ router.patch(
   usersMid.juryExists,
   events.updateJuries
 );
-router.delete(
-  "/events/:id",
-  secure.auth,
-  eventsMid.exists,
-  eventsMid.isAdmin,
-  events.delete
-);
+// router.delete(
+//   "/events/:id",
+//   secure.auth,
+//   eventsMid.exists,
+//   eventsMid.isAdmin,
+//   events.delete
+// );
 
 //GROUPS
 router.post(
@@ -85,64 +78,71 @@ router.get(
   "/groups/:groupId",
   secure.auth,
   groupsMid.exists,
-  groupsMid.isAdmin,
+  /*groupsMid.isAdmin,*/
   groups.detail
 );
-router.patch(
-  "/groups/:groupId",
-  secure.auth,
-  groupsMid.exists,
-  groupsMid.isAdmin,
-  groups.update
-);
-router.delete(
-  "/groups/:groupId",
-  secure.auth,
-  groupsMid.exists,
-  groupsMid.isAdmin,
-  groups.delete
-);
+// router.patch(
+//   "/groups/:groupId",
+//   secure.auth,
+//   groupsMid.exists,
+//   groupsMid.isAdmin,
+//   groups.update
+// );
+// router.delete(
+//   "/groups/:groupId",
+//   secure.auth,
+//   groupsMid.exists,
+//   groupsMid.isAdmin,
+//   groups.delete
+// );
 
 //PUNTUATIONS
 router.post(
-  "/puntuations/:groupId",
+  "/puntuations/:eventId",
   secure.auth,
+  eventsMid.exists,
   groupsMid.exists,
-  groupsMid.isJury,
+  eventsMid.isJury,
+  puntuationsMid.notExists,
   puntuations.create
 );
 router.get(
+  "/puntuations/:eventId/:juryId/:groupId",
+  secure.auth,
+  puntuations.exists
+);
+router.get(
   "/puntuations/:groupId",
   secure.auth,
   groupsMid.exists,
-  groupsMid.isAdmin,
+  /*groupsMid.isAdmin,*/
   puntuations.list
 );
-router.get(
-  "/puntuations/:groupId/:userId",
-  secure.auth,
-  groupsMid.isJury,
-  puntuations.detail
-);
+// router.get(
+//   "/puntuations/:groupId/:userId",
+//   secure.auth,
+//   groupsMid.isJury,
+//   puntuations.detail
+// );
 router.patch(
   "/puntuations/:id",
   secure.auth,
   puntuationsMid.exists,
-  groupsMid.isJury,
+  /*groupsMid.isJury,*/
   puntuations.update
 );
-router.delete(
-  "/puntuations/:id",
-  secure.auth,
-  puntuationsMid.exists,
-  groupsMid.isJury,
-  puntuations.delete
-);
-router.delete(
-  "/puntuations/:eventId",
-  secure.auth,
-  eventsMid.isAdmin,
-  puntuations.deleteAll
-);
+// router.delete(
+//   "/puntuations/:id",
+//   secure.auth,
+//   puntuationsMid.exists,
+//   groupsMid.isJury,
+//   puntuations.delete
+// );
+// router.delete(
+//   "/puntuations/:eventId",
+//   secure.auth,
+//   eventsMid.isAdmin,
+//   puntuations.deleteAll
+// );
 
 module.exports = router;
