@@ -38,7 +38,7 @@ function PuntuationCard({ group }) {
   }, [edit]);
 
   return (
-    <div className="bg-white p-4 rounded-2xl shadow-md mt-4">
+    <div className="bg-white p-7 rounded-2xl shadow-md m-10">
       <div className="flex justify-between items-center">
         <p className="text-xl font-bold text-teal-700 text-center">
           {group.name}

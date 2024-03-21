@@ -36,7 +36,6 @@ module.exports.exists = (req, res, next) => {
 module.exports.isJury = (req, res, next) => {
   Event.findById(req.puntuation.event)
   .then((event) => {
-    console.log(`event ${event}`)
     if (event.juries.includes(req.user.id)) {
       next();
     } else {
