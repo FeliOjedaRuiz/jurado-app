@@ -20,19 +20,19 @@ const puntuationSchema = new Schema(
     },
     interpretation: {
       type: Number,
-      required: true,
+      // required: true,
     },
     music: {
       type: Number,
-      required: true,
+      // required: true,
     },
     leter: {
       type: Number,
-      required: true,
+      // required: true,
     },
     staging: {
       type: Number,
-      required: true,
+      // required: true,
     }, 
   },
   {

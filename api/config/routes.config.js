@@ -12,9 +12,15 @@ const puntuationsMid = require("../middlewares/puntuations.mid");
 const secure = require("../middlewares/secure.mid");
 
 // USERS
-router.post("/users", users.create)
+router.post("/users", users.create);
 // router.get("/users/:id", secure.auth, usersMid.isOwner, users.detail);
-router.get("/users/:eventId", secure.auth, eventsMid.exists, eventsMid.isAdmin, users.listJuries);
+router.get(
+  "/users/:eventId",
+  secure.auth,
+  eventsMid.exists,
+  eventsMid.isAdmin,
+  users.listJuries
+);
 // router.patch('/users/:id', secure.auth, usersMid.exists, usersMid.isOwner, users.update);
 // router.delete(
 //   "/users/:userId",
@@ -118,19 +124,19 @@ router.get(
   /*groupsMid.isAdmin,*/
   puntuations.list
 );
+router.patch(
+  "/puntuations/:puntuationId",
+  secure.auth,
+  puntuationsMid.exists,
+  puntuationsMid.isJury,
+  puntuations.update
+);
 // router.get(
 //   "/puntuations/:groupId/:userId",
 //   secure.auth,
 //   groupsMid.isJury,
 //   puntuations.detail
 // );
-router.patch(
-  "/puntuations/:id",
-  secure.auth,
-  puntuationsMid.exists,
-  /*groupsMid.isJury,*/
-  puntuations.update
-);
 // router.delete(
 //   "/puntuations/:id",
 //   secure.auth,

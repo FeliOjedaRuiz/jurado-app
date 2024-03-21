@@ -1,4 +1,5 @@
 const Puntuation = require("../models/puntuation.model");
+const Event = require("../models/event.model");
 const createError = require("http-errors");
 
 module.exports.notExists = (req, res, next) => {
@@ -20,8 +21,7 @@ module.exports.notExists = (req, res, next) => {
 };
 
 module.exports.exists = (req, res, next) => {
-  const puntuationId = req.params.puntuationId || req.params.id;
-  Puntuation.findById(puntuationId)
+  Puntuation.findById(req.params.puntuationId )
     .then((puntuation) => {
       if (puntuation) {
         req.puntuation = puntuation;
@@ -31,4 +31,16 @@ module.exports.exists = (req, res, next) => {
       }
     })
     .catch(next);
+};
+
+module.exports.isJury = (req, res, next) => {
+  Event.findById(req.puntuation.event)
+  .then((event) => {
+    console.log(`event ${event}`)
+    if (event.juries.includes(req.user.id)) {
+      next();
+    } else {
+      next(createError(401, "Unauthorized"));
+    }
+  });
 };

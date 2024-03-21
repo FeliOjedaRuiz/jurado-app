@@ -3,7 +3,6 @@ import GeneralLayout from "../components/layouts/GeneralLayout";
 import { Link, useParams } from "react-router-dom";
 import eventsService from "../services/events.js";
 import { EventDetailTabs } from "../components/events/events-detail/EventDetailTabs.jsx";
-import { IconButton } from "@material-tailwind/react";
 import EditIcon from "../components/icons/EditIcon.jsx";
 
 function EventDetailPage() {

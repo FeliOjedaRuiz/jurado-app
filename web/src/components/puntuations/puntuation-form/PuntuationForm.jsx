@@ -4,7 +4,7 @@ import { AuthContext } from "../../../contexts/AuthStore";
 import puntuationsService from "../../../services/puntuations";
 import { useParams } from "react-router-dom";
 
-function PuntuationForm({ group, onCreation }) {
+function PuntuationForm({ group, onSave }) {
   const {
     register,
     handleSubmit,
@@ -24,7 +24,7 @@ function PuntuationForm({ group, onCreation }) {
       puntuation.jury = user.id;
       puntuation.group = group.id;
       puntuation = await puntuationsService.create(eventId, puntuation);
-      onCreation()
+      onSave()
     } catch (error) {
       const errors = error.response?.data?.errors;
       if (errors) {
