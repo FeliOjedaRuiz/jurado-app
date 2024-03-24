@@ -23,6 +23,7 @@ function EventListJury() {
       
 
       <div className="">
+        {!events[0] && <p className='text-center p-1 bg-teal-300 rounded-lg mt-2 text-white'>Aún no eres jurado en ningún evento</p> }
         {events.map((event) => (
           <JuryEventItem event={event} key={event.id} />
         ))}
