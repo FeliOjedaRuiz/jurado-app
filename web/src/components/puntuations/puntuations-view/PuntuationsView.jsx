@@ -1,5 +1,27 @@
+import { useEffect, useState } from "react";
+import puntuationsService from "../../../services/puntuations";
 
-function PuntuationsView({ puntuation }) {
+function PuntuationsView({ juryId, groupId, eventId, exists }) {
+  const [puntuation, setPuntuation] = useState({});
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    puntuationsService
+      .exists(eventId, juryId, groupId)
+      .then((puntuation) => {
+        if (puntuation) {
+          setPuntuation(puntuation);
+          const sum =
+            puntuation.interpretation +
+            puntuation.music +
+            puntuation.leter +
+            puntuation.staging;
+          setTotal(sum);
+        }
+      })
+      .catch((error) => console.error(error));
+  }, [exists]);
+
   return (
     <div className="w-full max-w-sm mt-5">
       <div className="mb-3">
@@ -10,8 +32,6 @@ function PuntuationsView({ puntuation }) {
           <input
             type="number"
             placeholder={puntuation.interpretation}
-            min="0"
-            max="10"
             className="bg-gray-50 border  border-gray-300 text-gray-900 text-base rounded-lg block p-1 w-12 text-center"
             disabled
           />
@@ -26,8 +46,6 @@ function PuntuationsView({ puntuation }) {
           <input
             type="number"
             placeholder={puntuation.music}
-            min="0"
-            max="10"
             className="bg-gray-50 border  border-gray-300 text-gray-900 text-base rounded-lg block p-1 w-12 text-center"
             disabled
           />
@@ -42,8 +60,6 @@ function PuntuationsView({ puntuation }) {
           <input
             type="number"
             placeholder={puntuation.leter}
-            min="0"
-            max="10"
             className="bg-gray-50 border  border-gray-300 text-gray-900 text-base rounded-lg block p-1 w-12 text-center"
             disabled
           />
@@ -58,18 +74,24 @@ function PuntuationsView({ puntuation }) {
           <input
             type="number"
             placeholder={puntuation.staging}
-            min="0"
-            max="10"
             className="bg-gray-50 border  border-gray-300 text-gray-900 text-base rounded-lg block p-1 w-12 text-center"
             disabled
           />
         </div>
       </div>
 
-      <button
-        
-        className="text-white bg-gray-500 mt-3 rounded-full w-full px-4 py-1.5 text-center "
-      >
+      <div className="mb-3 mt-5">
+        <div className="flex items-center justify-between border-2 rounded-lg border-black">
+          <label className="block  mr-4 ml-2 text-xl font-bold text-gray-900">
+            TOTAL:
+          </label>
+          <div className=" text-gray-900 text-xl font-bold rounded-lg block p-1 w-12 text-center">
+            {total}{" "}
+          </div>
+        </div>
+      </div>
+
+      <button className="text-white bg-gray-500 mt-3 rounded-full w-full px-4 py-1.5 text-center ">
         Guardar cambios
       </button>
     </div>

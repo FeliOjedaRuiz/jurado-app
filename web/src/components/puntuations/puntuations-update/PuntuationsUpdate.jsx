@@ -19,16 +19,16 @@ function PuntuationsUpdate({ puntuation, onSave, changeEdit }) {
       setServerError();
       console.debug("Updating puntuation...");
       if (!puntuation.interpretation) {
-        puntuation.interpretation =oldPuntuation.interpretation
+        puntuation.interpretation = oldPuntuation.interpretation;
       }
       if (!puntuation.music) {
-        puntuation.music =oldPuntuation.music
+        puntuation.music = oldPuntuation.music;
       }
       if (!puntuation.leter) {
-        puntuation.leter =oldPuntuation.leter
+        puntuation.leter = oldPuntuation.leter;
       }
       if (!puntuation.staging) {
-        puntuation.staging =oldPuntuation.staging
+        puntuation.staging = oldPuntuation.staging;
       }
       puntuation = await puntuationsService.update(puntuationId, puntuation);
       onSave();

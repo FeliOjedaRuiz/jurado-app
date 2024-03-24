@@ -14,7 +14,7 @@ function EventItem({ event }) {
       {event.image && <AvatarDefault />}
       <div>
         <p className="ml-2">{event.name}</p>
-        <p className="ml-2 text-xs text-gray-600">Grupo 1, Grupo 2, </p>
+        {/* <p className="ml-2 text-xs text-gray-600"></p> */}
       </div>
     </Link>
   );

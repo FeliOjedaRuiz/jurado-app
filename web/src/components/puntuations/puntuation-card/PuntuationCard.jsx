@@ -19,7 +19,6 @@ function PuntuationCard({ group }) {
   };
 
   const changeEdit = () => {
-    console.log("edit");
     setEdit(!edit);
   };
 
@@ -35,7 +34,7 @@ function PuntuationCard({ group }) {
         }
       })
       .catch((error) => console.error(error));
-  }, [edit]);
+  }, [edit, exists]);
 
   return (
     <div className="bg-white p-7 rounded-2xl shadow-md m-10">
@@ -43,17 +42,26 @@ function PuntuationCard({ group }) {
         <p className="text-xl font-bold text-teal-700 text-center">
           {group.name}
         </p>
-        {exists && <div onClick={changeEdit}>
-          <EditIcon className={`w-7 h-7 pb-1 text-teal-700`} />
-        </div>}
+        {exists && (
+          <div onClick={changeEdit}>
+            <EditIcon className={`w-7 h-7 pb-1 text-teal-700`} />
+          </div>
+        )}
       </div>
       {!exists && <PuntuationForm group={group} onSave={onSave} />}
       {exists && edit && (
-        <PuntuationsUpdate puntuation={puntuation} onSave={onSave} changeEdit={changeEdit} />
+        <PuntuationsUpdate
+          puntuation={puntuation}
+          onSave={onSave}
+          changeEdit={changeEdit}
+        />
       )}
       {exists && !edit && (
         <PuntuationsView
-          puntuation={puntuation}
+          juryId={user.id}
+          groupId={group.id}
+          eventId={eventId}
+          exists={exists}
         />
       )}
     </div>
