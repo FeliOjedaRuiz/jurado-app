@@ -30,6 +30,9 @@ function PuntuationsUpdate({ puntuation, onSave, changeEdit }) {
       if (!puntuation.staging) {
         puntuation.staging = oldPuntuation.staging;
       }
+      if (!puntuation.observations) {
+        puntuation.observations = oldPuntuation.observations;
+      }
       puntuation = await puntuationsService.update(puntuationId, puntuation);
       onSave();
       changeEdit();
@@ -151,6 +154,26 @@ function PuntuationsUpdate({ puntuation, onSave, changeEdit }) {
           </div>
         )}
       </div>
+
+      <div className="mb-3">
+          <div className="flex flex-col">
+            <label className="block  mr-4 text-xl font-medium text-gray-900">
+              Observaciones:
+            </label>
+            <textarea
+              placeholder={puntuation.observations}
+              className="bg-gray-50 border  border-gray-300 text-gray-900 text-base rounded-lg block p-1 h-16"
+              {...register("observations", {    
+                maxLength: 180
+              })}
+            />
+          </div>
+          {errors.staging && (
+            <div className="text-red-800 text-sm m-2">
+              {errors.observations?.message}
+            </div>
+          )}
+        </div>
 
       {serverError && (
         <div className="text-red-800 text-sm text-center">{serverError}</div>

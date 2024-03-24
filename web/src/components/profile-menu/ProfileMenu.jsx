@@ -49,16 +49,19 @@ export function ProfileMenu() {
           color="black"
           className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
         >
-          <Typography variant="h6" className="ml-3 text-xs">
-            {user.username}
+          <Typography variant="h6" className="ml-3 text-xs lowercase">
+            {user.email}
           </Typography>
-          <Avatar
+          {user.image && <Avatar
             variant="circular"
             size="xs"
             alt="foto de perfil"
             className="border border-gray-900 p-0.5"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-          />
+            src={user.image} />}
+            {!user.image && <div className="bg-teal-600 w-6 h-6 rounded-full text-center text-white flex items-center justify-center ">
+          <p>{user.email[0]}</p>
+        </div> }
+          
           <ChevronDownIcon
             strokeWidth={2.5}
             className={`h-3 w-3 transition-transform ${

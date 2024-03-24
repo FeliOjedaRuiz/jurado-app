@@ -4,18 +4,18 @@ const bcrypt = require("bcryptjs");
 
 const userSchema = new Schema(
   {
-    username: {
-      type: String,
-      required: "Se requiere un nombre de ususario",
-      maxLength: [16, "Largo máximo 16 caracteres"],
-      minlength: [3, "Largo minimo 3 caracteres"],
-      match: [
-        /^[a-z0-9]+$/,
-        "El nombre de usuario debe ser en minuscula y sin espacios",
-      ],
-      lowercase: true,
-      unique: true,
-    },
+    // username: {
+    //   type: String,
+    //   required: "Se requiere un nombre de ususario",
+    //   maxLength: [16, "Largo máximo 16 caracteres"],
+    //   minlength: [3, "Largo minimo 3 caracteres"],
+    //   match: [
+    //     /^[a-z0-9]+$/,
+    //     "El nombre de usuario debe ser en minuscula y sin espacios",
+    //   ],
+    //   lowercase: true,
+    //   unique: true,
+    // },
     email: {
       type: String,
       required: [true, "El email es requerido"],

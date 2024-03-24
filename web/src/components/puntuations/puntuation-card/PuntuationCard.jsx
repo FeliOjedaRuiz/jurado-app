@@ -42,9 +42,16 @@ function PuntuationCard({ group }) {
         <p className="text-xl font-bold text-teal-700 text-center">
           {group.name}
         </p>
-        {exists && (
-          <div onClick={changeEdit}>
+        {exists && !edit && (
+          <div onClick={changeEdit} className="flex font-medium text-teal-700">
+          <p>Editar</p>
             <EditIcon className={`w-7 h-7 pb-1 text-teal-700`} />
+          </div>
+        )}
+        {exists && edit && (
+          <div onClick={changeEdit} className="flex font-medium text-red-700">
+          <p>Cancelar</p>
+            <EditIcon className={`w-7 h-7 pb-1 text-red-700`} />
           </div>
         )}
       </div>

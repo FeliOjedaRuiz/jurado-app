@@ -42,7 +42,7 @@ function UsersFom() {
 
   return (
     <form onSubmit={handleSubmit(onUserSubmit)} className="w-full">
-      <div className="mb-6">
+      {/* <div className="mb-6">
         <label className="block mb-2 text-base font-medium text-gray-900">
           Nombre de usuario:
         </label>
@@ -59,7 +59,7 @@ function UsersFom() {
             {errors.username?.message}
           </div>
         )}
-      </div>
+      </div> */}
       <label className="block mb-2 text-base font-medium text-gray-900">
         Email:
       </label>

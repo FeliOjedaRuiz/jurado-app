@@ -22,11 +22,15 @@ module.exports.isOwner = (req, res, next) => {
 };
 
 module.exports.juryExists = (req, res, next) => {
-  User.findOne({ email: req.body.email })  
+  User.findOne({ email: req.body.email })
     .then((user) => {
       if (user) {
-        req.newJury = user
-        next();
+        if (!req.event.juries.includes(user.id)) {
+          req.newJury = user;
+          next();
+        } else {
+          next(createError(409, "User already exists"));
+        }
       } else {
         next(createError(404, "User not found"));
       }

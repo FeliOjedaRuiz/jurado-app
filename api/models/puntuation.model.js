@@ -33,7 +33,11 @@ const puntuationSchema = new Schema(
     staging: {
       type: Number,
       // required: true,
-    }, 
+    },
+    observations: {
+      type: String,      
+      maxLength: [180, "Largo máximo 180 caracteres"],
+    }
   },
   {
     timestamps: true,

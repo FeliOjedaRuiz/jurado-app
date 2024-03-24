@@ -39,20 +39,20 @@ function UsersLogin() {
         {serverError && <div>{serverError}</div>}
         <div className="mb-6">
           <label className="block mb-2 text-base font-medium text-gray-900">
-            Nombre de usuario
+            email
           </label>
           <input
-            type="text"
+            type="email"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5"
-            placeholder="username"
-            {...register("username", {
-              required: "Se necesita un nombre de usuario.",
+            placeholder="Email"
+            {...register("email", {
+              required: "Se necesita un email del usuario.",
             })}
           />
-          {errors.username && (
+          {errors.email && (
             <div className="text-red-800 text-sm m-2">
               {" "}
-              {errors.username?.message}{" "}
+              {errors.email?.message}{" "}
             </div>
           )}
         </div>

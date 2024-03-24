@@ -27,6 +27,8 @@ function JuriesForm({ onJuryAdd }) {
     } catch (error) {
       if (error.response.status === 404) {
         setServerError("No hay ningún usuario registrado con ese email, porfavor chequea bien el email.");
+      } else if(error.response.status === 409) {
+        setServerError("El usuario ya está registrado como jurado del evento");
       } else {
         const errors = error.response?.data?.errors;
         if (errors) {

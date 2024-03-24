@@ -60,7 +60,7 @@ module.exports.update = (req, res, next) => {
 // };
 
 module.exports.login = (req, res, next) => {
-  User.findOne({ username: req.body.username })
+  User.findOne({ email: req.body.email })
     .then((user) => {
       if (!user) {
         return next(createError(401, "Invalid credentials"));
