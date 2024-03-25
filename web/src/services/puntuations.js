@@ -6,8 +6,11 @@ const exists = (eventId, juryId, groupId) => http.get(`/puntuations/${eventId}/$
 
 const update = (puntuationId, puntuation) => http.patch(`/puntuations/${puntuationId}`, puntuation);
 
+const listByGroup = (groupId) => http.get(`/puntuations/${groupId}`)
+
 export default {
   create,
   exists,
   update,
+  listByGroup,
 };

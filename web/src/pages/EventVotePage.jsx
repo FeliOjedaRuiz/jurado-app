@@ -23,7 +23,7 @@ function EventVotePage() {
   return (
     <GeneralLayout>
       {event && (
-        <div className="flex flex-col items-center  bg-gray-100 w-full">
+        <div className="flex flex-col items-center bg-gray-100 w-full">
           <div className="w-full font-bold text-base xl:text-2xl p-2 xl:p-4 border-b-2 border-teal-500  bg-gray-200 ">
             <p className=" mr-2">{event.name} </p>
           </div>

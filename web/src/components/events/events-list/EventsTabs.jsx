@@ -37,7 +37,7 @@ export function EventsTabs() {
             key={value}
             value={value}
             onClick={() => setActiveTab(value)}
-            className={activeTab === value ? "text-gray-900 text-xl font-bold w-1/2 lg:w-36 h-12" : "w-1/2 text-xl lg:w-36 h-12"}
+            className={activeTab === value ? "text-gray-900 text-xl font-bold w-1/2 h-12" : "w-1/2 text-xl h-12"}
           >
             {label}
           </Tab>

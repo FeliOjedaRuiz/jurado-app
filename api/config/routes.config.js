@@ -115,13 +115,16 @@ router.post(
 router.get(
   "/puntuations/:eventId/:juryId/:groupId",
   secure.auth,
+  eventsMid.exists,
+  groupsMid.exists,
+  eventsMid.isJury,
   puntuations.exists
 );
 router.get(
   "/puntuations/:groupId",
   secure.auth,
   groupsMid.exists,
-  /*groupsMid.isAdmin,*/
+  groupsMid.isAdmin,
   puntuations.list
 );
 router.patch(

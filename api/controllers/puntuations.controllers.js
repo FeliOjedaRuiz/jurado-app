@@ -28,7 +28,9 @@ module.exports.list = (req, res, next) => {
   const groupId = req.params.groupId || req.group.id;
   Group.findById(groupId)
     .populate("puntuations")
-    .then((group) => res.json(group.puntuations))
+    .then((group) => {
+      res.json(group.puntuations)
+    })
     .catch(next);
 };
 

@@ -18,8 +18,10 @@ function EventsList() {
   }, []);
 
   return (
-    <div className="w-full h-[calc(100vh-58px)] relative">
-      <div className="absolute right-0 -top-10">
+    <div className="w-full h-full ">
+      
+      <div className="flex items-center justify-between px-4 py-2 -m-4 bg-gray-300 ">
+      <p className="text-xl font-medium text-teal-500 ">Eventos que administras</p>
         <Link
           to="/create-event"
           className=" bg-teal-800 w-12 h-12 shadow-md text-white text-3xl rounded-full flex items-center justify-center"
@@ -28,7 +30,8 @@ function EventsList() {
         </Link>
       </div>
       
-      <div className="mt-10">
+      
+      <div className="mt-8">
       {!events[0] && <p className='text-center p-1 bg-teal-300 rounded-lg text-white'>Crea eventos que administraras</p> }      
         {events.map((event) => (
           <EventItem event={event} key={event.id} />

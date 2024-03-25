@@ -1,9 +1,10 @@
 const Group = require("../models/group.model");
+const Event = require("../models/event.model");
 const createError = require("http-errors");
 
 module.exports.exists = (req, res, next) => {
-  
-  Group.findById(req.body.group)
+  const groupId = req.body.group || req.params.groupId
+  Group.findById(groupId)
     .then((group) => {
       if (group) {
         req.group = group;
@@ -15,13 +16,16 @@ module.exports.exists = (req, res, next) => {
     .catch(next);
 };
 
-// module.exports.isAdmin = (req, res, next) => {
-//   if (req.user.adminEvents.includes(req.group.event)) {
-//     next();
-//   } else {
-//     next(createError(401, "Unauthorized"));
-//   }
-// };
+module.exports.isAdmin = (req, res, next) => {
+  Event.findById(req.group.event)
+    .then((event) => {
+      if (event.admin = req.user.id) {
+        next();
+      } else {
+        next(createError(401, "Unauthorized"));
+      }
+    })  
+};
 
 // module.exports.isJury = (req, res, next) => {
 //   if (req.event.juries.includes(req.user.id)) {

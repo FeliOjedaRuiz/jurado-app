@@ -29,7 +29,7 @@ const groupSchema = new Schema(
   }
 );
 
-groupSchema.virtual("puntuation", {
+groupSchema.virtual("puntuations", {
   ref: "Puntuation",
   localField: "_id",
   foreignField: "group",
