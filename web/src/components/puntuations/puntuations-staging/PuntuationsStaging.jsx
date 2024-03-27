@@ -4,7 +4,7 @@ import puntuationsService from "../../../services/puntuations";
 import { useParams } from "react-router-dom";
 import ResultItem from "../result-item/ResultItem";
 
-function PuntuationsMusic() {
+function PuntuationsStaging() {
   const [allGroupsPuntuation, setAllGroupsPuntuation] = useState([]);
   const { eventId } = useParams();
 
@@ -34,16 +34,16 @@ function PuntuationsMusic() {
           puntuationsService
             .listByGroup(group.id)
             .then((groupPuntuations) => {
-              const musicPoints = [];
+              const stagingPoints = [];
               groupPuntuations.forEach((puntuation) => {
-                musicPoints.push(puntuation.music);
+                stagingPoints.push(puntuation.staging);
               });
-              let musicBounded = boundedMean(musicPoints);
+              let stagingBounded = boundedMean(stagingPoints);
 
               const groupPunt = {};
               groupPunt.id = group.id;
               groupPunt.name = group.name;
-              groupPunt.total = sum(musicBounded);
+              groupPunt.total = sum(stagingBounded);
               allPuntuations.push(groupPunt);
             })
             .catch((error) => console.error(error));
@@ -71,4 +71,4 @@ function PuntuationsMusic() {
   );
 }
 
-export default PuntuationsMusic;
+export default PuntuationsStaging;

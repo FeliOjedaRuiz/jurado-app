@@ -12,7 +12,7 @@ function PuntuationsOnOff({ onSwitch, enable }) {
   
 
   return (
-    <div className="flex items-center border-2 border-teal-300 bg-teal-50 rounded-xl py-2 px-3 mt-4">
+    <div className="flex items-center border-2 border-teal-300 bg-teal-50 rounded-xl py-2 px-3 my-4">
     <p className="mr-8 text-xl text-teal-800 font-medium">Habilitar votación</p>
       <Switch color="teal" onClick={onSwitch} defaultChecked={switching} />
     </div>

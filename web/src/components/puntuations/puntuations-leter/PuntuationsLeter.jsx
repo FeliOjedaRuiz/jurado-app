@@ -4,7 +4,7 @@ import puntuationsService from "../../../services/puntuations";
 import { useParams } from "react-router-dom";
 import ResultItem from "../result-item/ResultItem";
 
-function PuntuationsMusic() {
+function PuntuationsLeter() {
   const [allGroupsPuntuation, setAllGroupsPuntuation] = useState([]);
   const { eventId } = useParams();
 
@@ -34,16 +34,16 @@ function PuntuationsMusic() {
           puntuationsService
             .listByGroup(group.id)
             .then((groupPuntuations) => {
-              const musicPoints = [];
+              const leterPoints = [];
               groupPuntuations.forEach((puntuation) => {
-                musicPoints.push(puntuation.music);
+                leterPoints.push(puntuation.leter);
               });
-              let musicBounded = boundedMean(musicPoints);
+              let leterBounded = boundedMean(leterPoints);
 
               const groupPunt = {};
               groupPunt.id = group.id;
               groupPunt.name = group.name;
-              groupPunt.total = sum(musicBounded);
+              groupPunt.total = sum(leterBounded);
               allPuntuations.push(groupPunt);
             })
             .catch((error) => console.error(error));
@@ -55,7 +55,7 @@ function PuntuationsMusic() {
 
   return (
     <div className="mt-3 w-full max-w-md flex flex-col items-center justify-between border-2 border-teal-600 rounded-xl p-3  pb-5">
-      <p className="text-2xl font-bold text-teal-600">Mejor Música</p>
+      <p className="text-2xl font-bold text-teal-600">Mejor Letra</p>
       <div className="flex w-full justify-between text-xl p-2 text-teal-700 font-bold  border-b-2 border-teal-600">
         <p>Grupo</p>
         <p>puntos</p>
@@ -71,4 +71,4 @@ function PuntuationsMusic() {
   );
 }
 
-export default PuntuationsMusic;
+export default PuntuationsLeter;

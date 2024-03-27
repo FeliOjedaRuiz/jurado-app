@@ -34,16 +34,16 @@ function PuntuationsInterp() {
           puntuationsService
             .listByGroup(group.id)
             .then((groupPuntuations) => {
-              const interpPunts = [];
+              const interpretationPoints = [];
               groupPuntuations.forEach((puntuation) => {
-                interpPunts.push(puntuation.interpretation);
+                interpretationPoints.push(puntuation.interpretation);
               });
-              let interpBounded = boundedMean(interpPunts);
+              let interpretationBounded = boundedMean(interpretationPoints);
 
               const groupPunt = {};
               groupPunt.id = group.id;
               groupPunt.name = group.name;
-              groupPunt.total = sum(interpBounded);
+              groupPunt.total = sum(interpretationBounded);
               allPuntuations.push(groupPunt);
             })
             .catch((error) => console.error(error));
@@ -55,10 +55,10 @@ function PuntuationsInterp() {
 
   return (
     <div className="mt-3 w-full max-w-md flex flex-col items-center justify-between border-2 border-teal-600 rounded-xl p-3  pb-5">
-      <p className="text-3xl font-medium">Resultados</p>
+      <p className="text-2xl font-bold text-teal-600">Mejor Interpretación</p>
       <div className="flex w-full justify-between text-xl p-2 text-teal-700 font-bold  border-b-2 border-teal-600">
         <p>Grupo</p>
-        <p>INTERPRET</p>
+        <p>puntos</p>
       </div>
       <div>
         {allGroupsPuntuation

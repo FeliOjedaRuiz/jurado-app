@@ -8,6 +8,9 @@ import {
 import React from "react";
 import PuntuationsOrder from './../puntuations-order/PuntuationsOrder';
 import PuntuationsInterp from "../puntuations-interp/PuntuationsInterp";
+import PuntuationsMusic from "../puntuations-music/PuntuationsMusic";
+import PuntuationsLeter from "../puntuations-leter/PuntuationsLeter";
+import PuntuationsStaging from './../puntuations-staging/PuntuationsStaging';
 
 function PuntuationsTabs() {
   const [activeTab, setActiveTab] = React.useState("Total");
@@ -25,17 +28,17 @@ function PuntuationsTabs() {
     {
       label: "Música",
       value: "Música",
-      desc: <PuntuationsOrder />,
+      desc: <PuntuationsMusic />,
     },
     {
       label: "Letra",
       value: "Letra",
-      desc: <PuntuationsOrder />,
+      desc: <PuntuationsLeter />,
     },
     {
       label: "Escena",
       value: "Escena",
-      desc: <PuntuationsOrder />,
+      desc: <PuntuationsStaging />,
     },    
   ];
 
@@ -61,7 +64,7 @@ function PuntuationsTabs() {
       </TabsHeader>
       <TabsBody>
         {data.map(({ value, desc }) => (
-          <TabPanel key={value} value={value}>
+          <TabPanel key={value} value={value} className="p-0">
             {desc}
           </TabPanel>
         ))}

@@ -30,7 +30,7 @@ export function EventDetailTabs() {
     },
   ];
   return (
-    <Tabs value={activeTab}>
+    <Tabs value={activeTab} className="">
       <TabsHeader
         className="rounded-none border-b border-blue-gray-50 bg-transparent p-0"
         indicatorProps={{
@@ -49,9 +49,9 @@ export function EventDetailTabs() {
           </Tab>
         ))}
       </TabsHeader>
-      <TabsBody>
+      <TabsBody  >
         {data.map(({ value, desc }) => (
-          <TabPanel key={value} value={value}>
+          <TabPanel key={value} value={value} className="">
             {desc}
           </TabPanel>
         ))}
