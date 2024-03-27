@@ -16,7 +16,7 @@ function JuriesComponent() {
         setJuries(juries);
       })
       .catch((error) => console.error(error));
-  }, [reload, eventId]);
+  }, [reload]);
 
   const onJuryAdd = () => {
     setReload(!reload);

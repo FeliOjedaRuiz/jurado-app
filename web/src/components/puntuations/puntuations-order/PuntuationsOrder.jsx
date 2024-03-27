@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
-import groupsService from "../../../services/groups";
 import puntuationsService from "../../../services/puntuations";
-import { useParams } from "react-router-dom";
 import ResultItem from "../result-item/ResultItem";
 
-function PuntuationsOrder() {
-  const [allGroupsPuntuation, setAllGroupsPuntuation] = useState([]);
-  const { eventId } = useParams();
+function PuntuationsOrder({ groupsList }) {
+  const [allGroupsPuntuation, setAllGroupsPuntuation] = useState([]);  
 
   const boundedMean = (puntuations) => {
     puntuations.sort((a, b) => a - b);
@@ -26,37 +23,33 @@ function PuntuationsOrder() {
   };
 
   useEffect(() => {
-    groupsService
-      .list(eventId)
-      .then((groups) => {
-        const allPuntuations = [];
-        groups.forEach((group) => {
-          puntuationsService
-            .listByGroup(group.id)
-            .then((groupPuntuations) => {
-              const totalPunts = [];
-              groupPuntuations.forEach((puntuation) => {
-                let total =
-                  puntuation.interpretation +
-                  puntuation.music +
-                  puntuation.leter +
-                  puntuation.staging;
-                totalPunts.push(total);
-              });
-              let totalBounded = boundedMean(totalPunts);
+    const allPuntuations = [];
+    groupsList.forEach((group) => {
+      puntuationsService
+        .listByGroup(group.id)
+        .then((groupPuntuations) => {
+          const totalPunts = [];
+          groupPuntuations.forEach((puntuation) => {
+            let total =
+              puntuation.interpretation +
+              puntuation.music +
+              puntuation.leter +
+              puntuation.staging;
+            totalPunts.push(total);
+          });
+          let totalBounded = boundedMean(totalPunts);
 
-              const groupPunt = {};
-              groupPunt.id = group.id;
-              groupPunt.name = group.name;
-              groupPunt.total = sum(totalBounded);
-              allPuntuations.push(groupPunt);
-            })
-            .catch((error) => console.error(error));
-        });
-        setAllGroupsPuntuation(allPuntuations);
-      })
-      .catch((error) => console.error(error));
-  }, []);
+          const groupPunt = {};
+          groupPunt.id = group.id;
+          groupPunt.name = group.name;
+          groupPunt.total = sum(totalBounded);
+          allPuntuations.push(groupPunt);
+        })
+        .catch((error) => console.error(error));
+    });
+
+    setAllGroupsPuntuation(allPuntuations);
+  }, [groupsList]);
 
   return (
     <div className="mt-3 w-full max-w-md flex flex-col items-center justify-between border-2 border-teal-600 rounded-xl p-3  pb-5">

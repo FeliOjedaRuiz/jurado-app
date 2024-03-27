@@ -11,7 +11,7 @@ import JuriesComponent from "../../juries/juries-component/JuriesComponent";
 import PuntuationsComponent from "../../puntuations/puntuations-component/PuntuationsComponent";
  
 export function EventDetailTabs() {
-  const [activeTab, setActiveTab] = React.useState("groups");
+  const [activeTab, setActiveTab] = React.useState("puntuations");
   const data = [
     {
       label: "Grupos",

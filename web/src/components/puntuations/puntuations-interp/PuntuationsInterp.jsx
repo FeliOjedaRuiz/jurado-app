@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
-import groupsService from "../../../services/groups";
 import puntuationsService from "../../../services/puntuations";
-import { useParams } from "react-router-dom";
 import ResultItem from "../result-item/ResultItem";
 
-function PuntuationsInterp() {
+function PuntuationsInterp({ groupsList }) {
   const [allGroupsPuntuation, setAllGroupsPuntuation] = useState([]);
-  const { eventId } = useParams();
 
   const boundedMean = (puntuations) => {
     puntuations.sort((a, b) => a - b);
@@ -26,32 +23,27 @@ function PuntuationsInterp() {
   };
 
   useEffect(() => {
-    groupsService
-      .list(eventId)
-      .then((groups) => {
-        const allPuntuations = [];
-        groups.forEach((group) => {
-          puntuationsService
-            .listByGroup(group.id)
-            .then((groupPuntuations) => {
-              const interpretationPoints = [];
-              groupPuntuations.forEach((puntuation) => {
-                interpretationPoints.push(puntuation.interpretation);
-              });
-              let interpretationBounded = boundedMean(interpretationPoints);
+    const allPuntuations = [];
+    groupsList.forEach((group) => {
+      puntuationsService
+        .listByGroup(group.id)
+        .then((groupPuntuations) => {
+          const interpretationPoints = [];
+          groupPuntuations.forEach((puntuation) => {
+            interpretationPoints.push(puntuation.interpretation);
+          });
+          let interpretationBounded = boundedMean(interpretationPoints);
 
-              const groupPunt = {};
-              groupPunt.id = group.id;
-              groupPunt.name = group.name;
-              groupPunt.total = sum(interpretationBounded);
-              allPuntuations.push(groupPunt);
-            })
-            .catch((error) => console.error(error));
-        });
-        setAllGroupsPuntuation(allPuntuations);
-      })
-      .catch((error) => console.error(error));
-  }, []);
+          const groupPunt = {};
+          groupPunt.id = group.id;
+          groupPunt.name = group.name;
+          groupPunt.total = sum(interpretationBounded);
+          allPuntuations.push(groupPunt);
+        })
+        .catch((error) => console.error(error));
+    });
+    setAllGroupsPuntuation(allPuntuations);
+  }, [groupsList]);
 
   return (
     <div className="mt-3 w-full max-w-md flex flex-col items-center justify-between border-2 border-teal-600 rounded-xl p-3  pb-5">

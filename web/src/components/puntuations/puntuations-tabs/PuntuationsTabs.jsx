@@ -12,33 +12,34 @@ import PuntuationsMusic from "../puntuations-music/PuntuationsMusic";
 import PuntuationsLeter from "../puntuations-leter/PuntuationsLeter";
 import PuntuationsStaging from './../puntuations-staging/PuntuationsStaging';
 
-function PuntuationsTabs() {
+function PuntuationsTabs({ groupsList }) {
   const [activeTab, setActiveTab] = React.useState("Total");
+
   const data = [
     {
       label: "TOTAL",
       value: "Total",
-      desc: <PuntuationsOrder />,
+      desc: <PuntuationsOrder groupsList={groupsList} />,
     },
     {
       label: "Interpret",
       value: "Interpretación",
-      desc: <PuntuationsInterp />,
+      desc: <PuntuationsInterp groupsList={groupsList} />,
     },
     {
       label: "Música",
       value: "Música",
-      desc: <PuntuationsMusic />,
+      desc: <PuntuationsMusic groupsList={groupsList} />,
     },
     {
       label: "Letra",
       value: "Letra",
-      desc: <PuntuationsLeter />,
+      desc: <PuntuationsLeter groupsList={groupsList} />,
     },
     {
       label: "Escena",
       value: "Escena",
-      desc: <PuntuationsStaging />,
+      desc: <PuntuationsStaging groupsList={groupsList} />,
     },    
   ];
 

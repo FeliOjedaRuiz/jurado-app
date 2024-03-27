@@ -107,6 +107,7 @@ router.post(
   "/puntuations/:eventId",
   secure.auth,
   eventsMid.exists,
+  puntuationsMid.isOpen,
   groupsMid.exists,
   eventsMid.isJury,
   puntuationsMid.notExists,
@@ -131,6 +132,7 @@ router.patch(
   "/puntuations/:puntuationId",
   secure.auth,
   puntuationsMid.exists,
+  puntuationsMid.isOpen,
   puntuationsMid.isJury,
   puntuations.update
 );

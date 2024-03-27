@@ -21,7 +21,6 @@ function JuriesForm({ onJuryAdd }) {
     try {
       setServerError();
       console.debug("Updateng event");
-      console.log()
       event = await eventService.addJury(eventId, event);
       onJuryAdd();
     } catch (error) {

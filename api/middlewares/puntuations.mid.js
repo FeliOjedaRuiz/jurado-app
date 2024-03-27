@@ -21,10 +21,12 @@ module.exports.notExists = (req, res, next) => {
 };
 
 module.exports.exists = (req, res, next) => {
-  Puntuation.findById(req.params.puntuationId )
+  Puntuation.findById(req.params.puntuationId)
+    .populate("event")
     .then((puntuation) => {
       if (puntuation) {
         req.puntuation = puntuation;
+        req.event = puntuation.event
         next();
       } else {
         next(createError(404, "Puntuation not found"));
@@ -34,12 +36,19 @@ module.exports.exists = (req, res, next) => {
 };
 
 module.exports.isJury = (req, res, next) => {
-  Event.findById(req.puntuation.event)
-  .then((event) => {
+  Event.findById(req.puntuation.event).then((event) => {
     if (event.juries.includes(req.user.id)) {
       next();
     } else {
-      next(createError(401, "Unauthorized"));
+      next(createError(401, "Forbidden"));
     }
   });
+};
+
+module.exports.isOpen = (req, res, next) => {
+  if (req.event.open === true) {
+    next();
+  } else {
+    next(createError(403, "Unauthorized"));
+  }
 };

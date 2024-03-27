@@ -15,7 +15,7 @@ function GroupComponent() {
         setGroups(groups)        
       })
       .catch(error => console.error(error));
-  }, [reload, eventId]);
+  }, [reload]);
 
   const onGroupCreation = () => {
     setReload(!reload)
