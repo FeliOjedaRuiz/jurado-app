@@ -39,7 +39,7 @@ function PuntuationCard({ group }) {
   return (
     <div className="bg-white p-7 rounded-2xl shadow-md m-10">
       <div className="flex justify-between items-center">
-        <p className="text-xl font-bold text-teal-700 text-center">
+        <p className="text-lg font-bold text-teal-700 text-center">
           {group.name}
         </p>
         {exists && !edit && (

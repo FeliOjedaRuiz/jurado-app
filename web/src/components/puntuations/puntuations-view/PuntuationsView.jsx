@@ -84,7 +84,7 @@ function PuntuationsView({ juryId, groupId, eventId, exists }) {
           <label className="block  mr-4 text-xl font-medium text-gray-900">
             Observaciones:
           </label>
-          <div className="bg-gray-50 border-2  border-gray-900 text-black text-base rounded-lg block p-1 max-h-24 overflow-scroll">
+          <div className="bg-gray-50 border-2 min-h-10 border-gray-900 text-black text-base rounded-lg block p-1 max-h-24 overflow-scroll">
             {puntuation.observations}
           </div>
         </div>

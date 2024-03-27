@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PuntuationsOnOff from "../puntuations-on-off/PuntuationsOnOff";
 import eventServices from "../../../services/events"
 import { useParams } from "react-router-dom";
-import PuntuationsOrder from "../puntuations-order/PuntuationsOrder";
+import PuntuationsTabs from "../puntuations-tabs/PuntuationsTabs";
 
 function PuntuationsComponent() {
   const [enable, setEnable] = useState(true)
@@ -30,7 +30,7 @@ function PuntuationsComponent() {
   return (
     <div className="flex flex-col w-full items-center justify-center">
       <PuntuationsOnOff onSwitch={onSwitch} enable={enable} />
-      <PuntuationsOrder />
+      <PuntuationsTabs />
     </div>
   );
 }

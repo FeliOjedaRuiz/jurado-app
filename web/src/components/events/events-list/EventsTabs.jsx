@@ -23,6 +23,7 @@ export function EventsTabs() {
       desc: <EventListJury />,
     },
   ];
+  
   return (
     <Tabs value={activeTab}>
       <TabsHeader

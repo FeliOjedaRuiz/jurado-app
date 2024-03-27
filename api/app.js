@@ -13,12 +13,17 @@ const app = express();
 
 const cors = require("./config/cors.config");
 app.use(cors);
+app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(logger("dev"));
 app.use(secure.cleanBody);
 
 const api = require("./config/routes.config");
 app.use("/api/v1", api);
+
+app.get("/*", (req, res) => {
+  res.sendFile(`${__dirname}/public/index.html`);
+});
 
 //** Error Handling */
 app.use((req, res, next) => next(createError(404, "Route not found")));

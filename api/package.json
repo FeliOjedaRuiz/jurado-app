@@ -6,7 +6,9 @@
   "scripts": {
     "test": "",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "author": "Feliciano Ojeda Ruiz",
   "license": "ISC",

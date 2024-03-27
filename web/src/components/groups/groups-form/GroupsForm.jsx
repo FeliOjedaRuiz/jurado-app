@@ -14,7 +14,7 @@ function GroupsForm({ onGroupCreation }) {
   const [serverError, setServerError] = useState();
   const { eventId } = useParams();
 
-  console.debug(`Tags: ${watch("tags")}`);
+  // console.debug(`Tags: ${watch("tags")}`);
 
   const onGroupSubmit = async (group) => {
     try {

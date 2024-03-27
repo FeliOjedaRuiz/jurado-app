@@ -5,7 +5,7 @@ const eventSchema = new Schema(
   {
     name: {
       type: String,
-      maxLength: [36, "Largo máximo 36 caracteres"],
+      maxLength: [40, "Largo máximo 40 caracteres"],
       minlength: [3, "Largo minimo 3 caracteres"],
       require: "Se requiere un nombre para el evento",
     },
@@ -32,6 +32,9 @@ const eventSchema = new Schema(
         ref: "User",
       },
     ],
+    image: {
+      type: String,
+    },
   },
   {
     timestamps: true,

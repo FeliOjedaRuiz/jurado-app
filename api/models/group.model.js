@@ -5,7 +5,7 @@ const groupSchema = new Schema(
   {
     name: {
       type: String,
-      maxLength: [16, "Largo máximo 24 caracteres"],
+      maxLength: [40, "Largo máximo 40 caracteres"],
       minlength: [1, "Largo minimo 1 caracter"],
       required: "Se requiere un nombre de grupo",
     },

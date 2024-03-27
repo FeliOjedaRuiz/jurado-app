@@ -26,7 +26,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Se requiere una contraseña"],
       maxLength: [16, "Largo máximo 16 caracteres"],
-      minlength: [8, "Largo minimo 8 caracteres"],
+      minlength: [4, "Largo minimo 4 caracteres"],
     },
   },
   {

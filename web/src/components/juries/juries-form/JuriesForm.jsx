@@ -15,7 +15,7 @@ function JuriesForm({ onJuryAdd }) {
   const [serverError, setServerError] = useState();
   const { eventId } = useParams();
 
-  console.debug(`Tags: ${watch("tags")}`);
+  // console.debug(`Tags: ${watch("tags")}`);
 
   const onEventSubmit = async (event) => {
     try {
