@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 function JuryItem({ jury }) {
   return (
-    <div className="border-2 border-teal-500 px-2 py-1 w-full rounded-xl">
-      <p className="text-black font-medium text-lg">{jury.email}</p>
-    </div>
+    <Link to={`/juries/${jury.id}`} className="bg-teal-500 px-2 py-1 pl-3 w-full rounded-full ">
+      <p className="text-white font-medium text-xl">{jury.email}</p>
+    </Link>
   );
 }
 

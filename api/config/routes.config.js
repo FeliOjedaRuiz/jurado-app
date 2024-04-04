@@ -21,6 +21,11 @@ router.get(
   eventsMid.isAdmin,
   users.listJuries
 );
+router.get(
+  "/juries/:userId",
+  secure.auth,  
+  users.detail
+);
 // router.patch('/users/:id', secure.auth, usersMid.exists, usersMid.isOwner, users.update);
 // router.delete(
 //   "/users/:userId",
@@ -81,7 +86,7 @@ router.get(
   groups.list
 );
 router.get(
-  "/groups/:groupId",
+  "/group/:groupId",
   secure.auth,
   groupsMid.exists,
   /*groupsMid.isAdmin,*/

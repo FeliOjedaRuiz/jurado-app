@@ -36,8 +36,10 @@ module.exports.listJuries = (req, res, next) => {
 };
 
 module.exports.detail = (req, res, next) => {
-  User.findById(req.params.id)
-    .then((user) => res.json(user))
+  User.findById(req.params.userId)
+    .populate("puntuations")
+    .then((user) =>{
+      res.json(user)})
     .catch(next);
 };
 

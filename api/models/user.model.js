@@ -51,6 +51,13 @@ userSchema.virtual("events", {
   justOne: false,
 });
 
+userSchema.virtual("puntuations", {
+  ref: "Puntuation",
+  localField: "_id",
+  foreignField: "jury",
+  justOne: false,
+});
+
 userSchema.pre("save", function (next) {
   const user = this;
 

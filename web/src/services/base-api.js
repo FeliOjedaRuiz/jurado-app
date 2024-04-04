@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL:/*"https://jurado-app.fly.dev/api/v1"*/ "http://192.168.1.110:3001/api/v1",
+  baseURL:"http://192.168.1.110:3001/api/v1" /*"https://jurado-app.fly.dev/api/v1"*/
 });
 
 http.interceptors.request.use(

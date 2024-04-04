@@ -8,6 +8,7 @@ import CreateEventPage from "./pages/CreateEventPage";
 import EventDetailPage from "./pages/EventDetailPage";
 // import EventUpdatePage from './pages/EventUpdatePage';
 import EventVotePage from "./pages/EventVotePage";
+import JuryDetailPage from "./pages/JuryDetailPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/events/:eventId" element={<EventDetailPage />} />
         {/* <Route path="/events-update/:eventId" element={<EventUpdatePage />} /> */}
         <Route path="/events-jury/:eventId" element={<EventVotePage />} />
+        <Route path="/juries/:juryId" element={<JuryDetailPage />} />
       </Routes>
       </AuthStore>
     </>

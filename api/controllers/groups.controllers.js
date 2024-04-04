@@ -18,7 +18,7 @@ module.exports.list = (req, res, next) => {
 };
 
 module.exports.detail = (req, res, next) => {
-  Group.findById(req.params.id)
+  Group.findById(req.params.groupId)
     .then((group) => {
       res.json(group);
     })
