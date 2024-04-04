@@ -9,6 +9,7 @@ function JuryDetailPage() {
   const { juryId } = useParams();
   const [jury, setJury] = useState({});
   const [juryPuntuations, setJuryPuntuations] = useState([]);
+  const [seted, setSeted] = useState(false);
 
   useEffect(() => {
     usersService
@@ -17,7 +18,7 @@ function JuryDetailPage() {
         setJury(jury);
         if (jury.puntuations) {
           setJuryPuntuations(jury.puntuations);
-          console.log(jury.puntuations)
+          setSeted(true)
         }
       })
       .catch((error) => console.error(error));
@@ -33,8 +34,9 @@ function JuryDetailPage() {
               <EditIcon className={`w-7 h-7 pb-1`} />
             </Link>
           </div>
-          <div className="overflow-scroll min-h-[calc(100vh-101px)] flex justify-center">
-            <div className="grid lg:grid-cols-2 2xl:grid-cols-3">
+          <div className="overflow-scroll min-h-[calc(100vh-101px)] flex flex-col  items-center">
+          {seted && !juryPuntuations[0] && <div className="bg-red-600 p-2 px-4 m-5 rounded-xl text-white text-center text-xl font-medium">¡El jurado aún no ha votado para ningún grupo!</div> }
+            <div className="grid lg:grid-cols-2 2xl:grid-cols-3">              
               {juryPuntuations.map((puntuation) => (
                 <PuntuationItem puntuation={puntuation} key={puntuation.id} />
               ))}
