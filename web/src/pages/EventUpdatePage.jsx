@@ -1,8 +1,9 @@
 import GeneralLayout from "../components/layouts/GeneralLayout";
-import EventsUpdate from "../components/events/events-update/EventsUpdate.jsx";
+// import EventsUpdate from "../components/events/events-update/EventsUpdate.jsx";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import eventsService from "../services/events.js";
+import CategorysComponent from "../components/categorys/categorys.component/CategorysComponent.jsx";
 
 function EventUpdatePage() {
   const { eventId } = useParams();
@@ -24,7 +25,8 @@ function EventUpdatePage() {
           <p>{event.name} </p>
         </div>
         <p className="text-xl text-teal-800 font-medium mb-2">Editar evento</p>
-        <EventsUpdate event={event} />
+        {/* <EventsUpdate event={event} /> */}
+        <CategorysComponent />
       </div>
     </GeneralLayout>
   );

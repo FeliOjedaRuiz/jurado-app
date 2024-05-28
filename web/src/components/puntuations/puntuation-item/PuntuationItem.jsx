@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import groupsService from "../../../services/groups"
+import groupsService from "../../../services/groups";
 
 function PuntuationItem({ puntuation }) {
   const [group, setGroup] = useState({});
-  const groupId = puntuation.group
+  const [total, setTotal] = useState(0);
+  const groupId = puntuation.group;
 
   useEffect(() => {
     groupsService
@@ -12,7 +13,15 @@ function PuntuationItem({ puntuation }) {
         setGroup(group);
       })
       .catch((error) => console.error(error));
+    const sum =
+      puntuation.interpretation +
+      puntuation.music +
+      puntuation.leter +
+      puntuation.staging;
+    setTotal(sum);
   }, []);
+
+
 
   return (
     <div className="bg-white p-7 rounded-2xl shadow-md m-5 max-w-72">
@@ -65,16 +74,16 @@ function PuntuationItem({ puntuation }) {
             </div>
           </div>
 
-          {/* <div className="mb-5">
+          <div className="mb-5">
         <div className="flex items-center justify-between rounded-lg bg-teal-600">
           <label className="block  mr-4 ml-3 text-xl font-bold text-white">
             TOTAL:
           </label>
           <div className="text-white text-xl font-bold rounded-lg block p-1 w-12 text-center">
-            {}{" "}
+            {total}{" "}
           </div>
         </div>
-      </div> */}
+      </div>
 
           <div className="mb-3">
             <div className="flex flex-col">

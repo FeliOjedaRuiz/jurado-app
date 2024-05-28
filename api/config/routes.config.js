@@ -4,11 +4,13 @@ const users = require("../controllers/users.controllers");
 const events = require("../controllers/events.controllers");
 const groups = require("../controllers/groups.controllers");
 const puntuations = require("../controllers/puntuations.controllers");
+const categorys = require("../controllers/categorys.controllers");
 
 const usersMid = require("../middlewares/users.mid");
 const eventsMid = require("../middlewares/events.mid");
 const groupsMid = require("../middlewares/groups.mid");
 const puntuationsMid = require("../middlewares/puntuations.mid");
+const categorysMid = require("../middlewares/categorys.mid");
 const secure = require("../middlewares/secure.mid");
 
 // USERS
@@ -160,5 +162,29 @@ router.patch(
 //   eventsMid.isAdmin,
 //   puntuations.deleteAll
 // );
+
+
+//CATEGORYS
+router.post(
+  "/categorys/:eventId",
+  secure.auth,
+  eventsMid.exists,
+  eventsMid.isAdmin,
+  categorys.create
+);
+router.get(
+  "/categorys/:eventId",
+  secure.auth,
+  eventsMid.exists,
+  eventsMid.isMember,
+  categorys.list
+);
+router.delete(
+  "/categorys/:categoryId",
+  secure.auth,
+  categorysMid.exists,
+  categorysMid.isAdmin,
+  categorys.delete
+);
 
 module.exports = router;

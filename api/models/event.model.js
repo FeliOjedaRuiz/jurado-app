@@ -9,10 +9,10 @@ const eventSchema = new Schema(
       minlength: [3, "Largo minimo 3 caracteres"],
       require: "Se requiere un nombre para el evento",
     },
-    categorys: {
-      type: Array,
-      default: ["Interpretación", "Música", "Letra", "Puesta en escena"],
-    },
+    // categorys: {
+    //   type: Array,
+    //   default: ["Interpretación", "Música", "Letra", "Puesta en escena"],
+    // },
     open: {
       type: Boolean,
       default: false,
@@ -52,6 +52,13 @@ const eventSchema = new Schema(
 
 eventSchema.virtual("groups", {
   ref: "Group",
+  localField: "_id",
+  foreignField: "event",
+  justOne: false,
+});
+
+eventSchema.virtual("categorys", {
+  ref: "Category",
   localField: "_id",
   foreignField: "event",
   justOne: false,

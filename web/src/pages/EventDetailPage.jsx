@@ -23,7 +23,7 @@ function EventDetailPage() {
       {event && (
         <div className="flex flex-col bg-gray-100 w-full" >
           <div className="font-bold text-base xl:text-2xl p-2 xl:p-4 border-b-2 border-teal-500  bg-gray-200 ">
-            <Link to={`/events`} className="flex items-center text-teal-800">
+            <Link to={`/events-update/${event.id}`} className="flex items-center text-teal-800">
               <p className=" mr-2">{event.name} </p>
               <EditIcon className={`w-7 h-7 pb-1`} />
             </Link>
