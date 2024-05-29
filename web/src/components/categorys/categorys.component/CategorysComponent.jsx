@@ -21,10 +21,14 @@ function CategorysComponent() {
     setReload(!reload)
   }
 
+  const onCategoryDelete = () => {
+    setReload(!reload)
+  }
+
   return (
     <div className="flex flex-col w-full items-center justify-center">
       <CategorysForm onCategoryCreation={onCategoryCreation} />
-      <Categoryslist categorys={categorys} />
+      <Categoryslist categorys={categorys} onCategoryDelete={onCategoryDelete} />
     </div>
   )
 }

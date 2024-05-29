@@ -36,10 +36,10 @@ function CategorysForm({ onCategoryCreation }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onCategorySubmit)}>
+    <form onSubmit={handleSubmit(onCategorySubmit)} className="w-full max-w-2xl">
         <div className="mb-6">
           <label className="block mb-1 pl-1 text-base font-medium text-gray-900">
-            Criterios de evaluación:
+            Añadir categorias de evaluación:
           </label>
           <div className="flex">
             <input

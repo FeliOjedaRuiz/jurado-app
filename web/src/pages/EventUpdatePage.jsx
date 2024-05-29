@@ -21,11 +21,10 @@ function EventUpdatePage() {
   return (
     <GeneralLayout>
       <div className="flex flex-col bg-gray-200 w-full p-8 items-center lg:justify-center">
-        <div className="font-bold text-2xl lg:text-4xl text-teal-800 mb-12 mt-4 lg:mt-0 lg:mb-8">
+        <div className="font-bold text-2xl lg:text-4xl text-teal-600 mb-12 mt-4 lg:mt-0 lg:mb-8">
           <p>{event.name} </p>
         </div>
-        <p className="text-xl text-teal-800 font-medium mb-2">Editar evento</p>
-        {/* <EventsUpdate event={event} /> */}
+        <p className="text-2xl text-teal-800 font-bold mb-4">Editar evento</p>
         <CategorysComponent />
       </div>
     </GeneralLayout>
