@@ -17,7 +17,7 @@ function CategoryItem({ category, onCategoryDelete }) {
   return (
     <div className="bg-teal-100 rounded py-1 px-2 m-1 text-lg flex items-center font-medium">
       <p>{category.name} &nbsp;&nbsp;</p>
-      <XMarkIcon className="h-5" onClick={handleDelete} />
+      <XMarkIcon className="h-5 cursor-pointer" onClick={handleDelete} />
     </div>
   );
 }
