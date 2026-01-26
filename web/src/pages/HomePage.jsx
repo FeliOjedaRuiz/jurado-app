@@ -17,7 +17,7 @@ function HomePage() {
 								src="https://res.cloudinary.com/duoshgr3h/image/upload/v1752250686/jurado-app/Icons/flor-de-lis_ihdgfm.svg"
 								alt="logo scouts flor de lis"
 							/>
-							<h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold text-white text-center drop-shadow-md">
+							<h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold text-white text-center ">
 								JURADO SCOUT
 							</h1>
 						</div>
