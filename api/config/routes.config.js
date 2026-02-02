@@ -23,17 +23,16 @@ router.get(
 );
 router.get(
   "/juries/:userId",
-  secure.auth,  
+  secure.auth,
   users.detail
 );
-// router.patch('/users/:id', secure.auth, usersMid.exists, usersMid.isOwner, users.update);
-// router.delete(
-//   "/users/:userId",
-//   secure.auth,
-//   usersMid.exists,
-//   usersMid.isOwner,
-//   users.delete
-// );
+router.patch('/users/:id', secure.auth, usersMid.exists, users.update);
+router.delete(
+  "/users/:id",
+  secure.auth,
+  usersMid.exists,
+  users.delete
+);
 router.post("/login", users.login);
 
 //EVENTS
@@ -62,13 +61,13 @@ router.patch(
   usersMid.juryExists,
   events.updateJuries
 );
-// router.delete(
-//   "/events/:id",
-//   secure.auth,
-//   eventsMid.exists,
-//   eventsMid.isAdmin,
-//   events.delete
-// );
+router.delete(
+  "/events/:id",
+  secure.auth,
+  eventsMid.exists,
+  eventsMid.isAdmin,
+  events.delete
+);
 
 //GROUPS
 router.post(
@@ -92,20 +91,20 @@ router.get(
   /*groupsMid.isAdmin,*/
   groups.detail
 );
-// router.patch(
-//   "/groups/:groupId",
-//   secure.auth,
-//   groupsMid.exists,
-//   groupsMid.isAdmin,
-//   groups.update
-// );
-// router.delete(
-//   "/groups/:groupId",
-//   secure.auth,
-//   groupsMid.exists,
-//   groupsMid.isAdmin,
-//   groups.delete
-// );
+router.patch(
+  "/groups/:groupId",
+  secure.auth,
+  groupsMid.exists,
+  groupsMid.isAdmin,
+  groups.update
+);
+router.delete(
+  "/groups/:groupId",
+  secure.auth,
+  groupsMid.exists,
+  groupsMid.isAdmin,
+  groups.delete
+);
 
 //PUNTUATIONS
 router.post(
@@ -141,24 +140,25 @@ router.patch(
   puntuationsMid.isJury,
   puntuations.update
 );
-// router.get(
-//   "/puntuations/:groupId/:userId",
-//   secure.auth,
-//   groupsMid.isJury,
-//   puntuations.detail
-// );
-// router.delete(
-//   "/puntuations/:id",
-//   secure.auth,
-//   puntuationsMid.exists,
-//   groupsMid.isJury,
-//   puntuations.delete
-// );
-// router.delete(
-//   "/puntuations/:eventId",
-//   secure.auth,
-//   eventsMid.isAdmin,
-//   puntuations.deleteAll
-// );
+router.get(
+  "/puntuations/:groupId/:userId",
+  secure.auth,
+  groupsMid.exists,
+  puntuations.detail
+);
+router.delete(
+  "/puntuations/:puntuationId",
+  secure.auth,
+  puntuationsMid.exists,
+  puntuationsMid.isJury,
+  puntuations.delete
+);
+router.delete(
+  "/puntuations/all/:eventId",
+  secure.auth,
+  eventsMid.exists,
+  eventsMid.isAdmin,
+  puntuations.deleteAll
+);
 
 module.exports = router;

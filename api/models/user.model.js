@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
+const createError = require("http-errors");
 
 const userSchema = new Schema(
   {
@@ -25,8 +26,6 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: [true, "Se requiere una contraseña"],
-      maxLength: [16, "Largo máximo 16 caracteres"],
-      minlength: [4, "Largo minimo 4 caracteres"],
     },
   },
   {
@@ -62,6 +61,9 @@ userSchema.pre("save", function (next) {
   const user = this;
 
   if (user.isModified("password")) {
+    if (user.password.length < 4 || user.password.length > 16) {
+      return next(createError(400, "La contraseña debe tener entre 4 y 16 caracteres"));
+    }
     bcrypt
       .genSalt(10)
       .then((salt) => {

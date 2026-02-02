@@ -11,14 +11,7 @@ module.exports.create = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.listJuries = (req, res, next) => {
-  Event.findById(req.paramas.eventId)
-    .populate("juries")
-    .then((event) => {
-      res.json(event.juries);
-    })
-    .catch(next);
-};
+
 
 module.exports.delete = (req, res, next) => {
   User.deleteOne({ _id: req.params.id })
@@ -38,14 +31,16 @@ module.exports.listJuries = (req, res, next) => {
 module.exports.detail = (req, res, next) => {
   User.findById(req.params.userId)
     .populate("puntuations")
-    .then((user) =>{
-      res.json(user)})
+    .then((user) => {
+      res.json(user)
+    })
     .catch(next);
 };
 
 module.exports.update = (req, res, next) => {
-  Object.assign(req.user, req.body);
-  req.user
+  const userToUpdate = req.targetUser || req.user;
+  Object.assign(userToUpdate, req.body);
+  userToUpdate
     .save()
     .then((user) => res.json(user))
     .catch(next);

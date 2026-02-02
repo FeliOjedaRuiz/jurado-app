@@ -1,5 +1,5 @@
 const Event = require("../models/event.model");
-const User = require("../models/event.model");
+const User = require("../models/user.model");
 
 module.exports.create = (req, res, next) => {
   if (req.body) {

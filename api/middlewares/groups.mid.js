@@ -19,12 +19,14 @@ module.exports.exists = (req, res, next) => {
 module.exports.isAdmin = (req, res, next) => {
   Event.findById(req.group.event)
     .then((event) => {
-      if (event.admin = req.user.id) {
+      // Check if the user is the admin of the event
+      if (event.admin == req.user.id) {
         next();
       } else {
         next(createError(401, "Unauthorized"));
       }
-    })  
+    })
+    .catch(next);
 };
 
 // module.exports.isJury = (req, res, next) => {

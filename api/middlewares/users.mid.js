@@ -5,6 +5,7 @@ module.exports.exists = (req, res, next) => {
   User.findById(req.params.id)
     .then((user) => {
       if (user) {
+        req.targetUser = user;
         next();
       } else {
         next(createError(404, "User not found"));
