@@ -8,20 +8,18 @@ function RegisterPage() {
 	const [changeSize, setChageSize] = useState(true);
 
 	useEffect(() => {
-		if (window.innerWidth < '960') {
-			setMobile(true);
-		} else {
-			setMobile(false);
-		}
-	}, [changeSize]);
-	window.onresize = function () {
-		setChageSize(!changeSize);
-		console.log('resize');
-	};
+		const handleResize = () => {
+			setMobile(window.innerWidth < 960);
+		};
+
+		handleResize(); // Initial check
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
 
 	return (
 		<NavbarLayout>
-			<div className="flex h-[calc(100vh-58px)]">
+			<div className="flex min-h-[calc(100dvh-58px)]">
 				<div className="w-full lg:max-w-sm flex flex-col items-center bg-gray-100 p-8">
 					<div className="max-w-md w-full">
 						<div>

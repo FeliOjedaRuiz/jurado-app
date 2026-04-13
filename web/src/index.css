@@ -2,13 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 @layer utilities {
   .glass-card {
     @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(98,37,153,0.1)];
+    -webkit-backdrop-filter: blur(24px);
   }
   
   .glass-card-dark {
     @apply bg-[#622599]/80 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.2)];
+    -webkit-backdrop-filter: blur(24px);
   }
 
   .text-glow {

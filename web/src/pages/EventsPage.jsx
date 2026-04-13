@@ -8,16 +8,14 @@ function EventsPage() {
 	const [changeSize, setChageSize] = useState(true);
 
 	useEffect(() => {
-		if (window.innerHeight < window.innerWidth) {
-			setVerticalScreen(false);
-		} else {
-			setVerticalScreen(true);
-		}
-	}, [changeSize]);
+		const handleResize = () => {
+			setVerticalScreen(window.innerHeight >= window.innerWidth);
+		};
 
-	window.onresize = function (event) {
-		setChageSize(!changeSize);
-	};
+		handleResize();
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
 
 	return (
 		<GeneralLayout>

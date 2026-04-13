@@ -8,9 +8,9 @@ import {
 function HomePage() {
 	return (
 		<NavbarLayout>
-			<div className="min-h-[calc(100vh-58px)] flex flex-col bg-gray-50">
+			<div className="min-h-[calc(100dvh-58px)] flex flex-col bg-gray-50">
 				{/* Hero Section */}
-				<section className="relative w-full h-[65vh] min-h-[500px] overflow-hidden">
+				<section className="relative w-full h-[65dvh] min-h-[500px] overflow-hidden">
 					{/* Background Image */}
 					<div className="absolute inset-0 bg-[url('https://res.cloudinary.com/duoshgr3h/image/upload/v1752251561/jurado-app/Images/Festival-Scout_14_pbba59.webp')] bg-cover bg-center bg-no-repeat" />
 
