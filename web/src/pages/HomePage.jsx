@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import NavbarLayout from '../components/layouts/NavbarLayout';
 import {
-	ArrowLeftOnRectangleIcon,
 	UserPlusIcon,
+	ArrowRightIcon,
 } from '@heroicons/react/24/solid';
 
 function HomePage() {
@@ -38,61 +38,52 @@ function HomePage() {
 				<div className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-20 pb-12">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
 						{/* Card: Login */}
-						<div className="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col">
-							<div className="p-5 flex flex-col items-center text-center flex-1">
-								<div className="flex items-center justify-center gap-3 mb-2">
-									<div className="h-10 w-10 bg-[#622599]/10 rounded-lg flex items-center justify-center text-[#622599]">
-										<ArrowLeftOnRectangleIcon className="h-5 w-5" />
-									</div>
-									<h2 className="text-lg font-bold text-gray-800">Ingresar</h2>
-								</div>
-								<p className="text-sm text-gray-600 mb-4 max-w-xs mx-auto leading-relaxed">
-									Accede al panel de jurado o gestiona tus eventos si ya tienes
-									cuenta.
+						<div className="glass-card rounded-[2.5rem] overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(98,37,153,0.3)] flex flex-col group animate-fade-in [animation-delay:200ms] opacity-0 fill-mode-forwards relative">
+							{/* Subtle Background Pattern */}
+							<div className="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity pointer-events-none">
+								<img src="https://res.cloudinary.com/duoshgr3h/image/upload/v1752250686/jurado-app/Icons/flor-de-lis_ihdgfm.svg" className="w-32 h-32 rotate-12" alt="" />
+							</div>
+
+							<div className="p-8 pt-10 flex flex-col items-center text-center flex-1 relative z-10">
+								<h2 className="text-2xl font-black text-[#622599] mb-3 tracking-tight">Ingresar</h2>
+								<div className="h-1 w-12 bg-gradient-to-r from-[#622599] to-transparent rounded-full mb-6 mx-auto opacity-20" />
+								<p className="text-gray-600 font-medium leading-relaxed">
+									Accede al panel de jurado o gestiona tus eventos si ya tienes cuenta.
 								</p>
 							</div>
-							<div className="p-4 pt-0 w-full">
+							
+							<div className="p-6 pt-0 w-full relative z-10">
 								<Link to="/login">
-									<button className="w-full py-2.5 px-4 bg-[#622599] hover:bg-[#4a1c73] text-white font-bold rounded-lg shadow-md transition-colors flex items-center justify-center gap-2 text-sm">
-										<span>Iniciar Sesión</span>
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											strokeWidth={2.5}
-											stroke="currentColor"
-											className="w-4 h-4"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-											/>
-										</svg>
+									<button className="w-full py-4 px-6 bg-[#622599] hover:bg-[#4a1c73] text-white font-bold rounded-2xl shadow-lg hover:shadow-purple-500/30 transition-all duration-300 flex items-center justify-center gap-3 active:scale-95 group/btn overflow-hidden relative">
+										<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
+										<span className="relative">Iniciar Sesión</span>
+										<ArrowRightIcon className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
 									</button>
 								</Link>
 							</div>
 						</div>
 
 						{/* Card: Register */}
-						<div className="bg-[#622599] rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col">
-							<div className="p-5 flex flex-col items-center text-center flex-1 text-white">
-								<div className="flex items-center justify-center gap-3 mb-2">
-									<div className="h-10 w-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
-										<UserPlusIcon className="h-5 w-5 text-white" />
-									</div>
-									<h2 className="text-lg font-bold">Registrarse</h2>
-								</div>
-								<p className="text-sm text-white/90 mb-4 max-w-xs mx-auto leading-relaxed">
-									¿Primera vez aquí? Crea tu cuenta y comienza a organizar tu
-									primer festival.
+						<div className="glass-card-dark rounded-[2.5rem] overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(98,37,153,0.4)] flex flex-col group animate-fade-in [animation-delay:400ms] opacity-0 fill-mode-forwards relative">
+							{/* Subtle Background Pattern */}
+							<div className="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-[0.1] transition-opacity pointer-events-none">
+								<img src="https://res.cloudinary.com/duoshgr3h/image/upload/v1752250686/jurado-app/Icons/flor-de-lis_ihdgfm.svg" className="w-32 h-32 -rotate-12 invert" alt="" />
+							</div>
+
+							<div className="p-8 pt-10 flex flex-col items-center text-center flex-1 relative z-10">
+								<h2 className="text-2xl font-black text-white mb-3 tracking-tight">Registrarse</h2>
+								<div className="h-1 w-12 bg-gradient-to-r from-white to-transparent rounded-full mb-6 mx-auto opacity-30" />
+								<p className="text-white/80 font-medium leading-relaxed">
+									¿Primera vez aquí? Crea tu cuenta y comienza a organizar tu primer festival.
 								</p>
 							</div>
-							<div className="p-4 pt-0 w-full">
+
+							<div className="p-6 pt-0 w-full relative z-10">
 								<Link to="/register">
-									<button className="w-full py-2.5 px-4 bg-white hover:bg-gray-100 text-[#622599] font-bold rounded-lg shadow-md transition-colors flex items-center justify-center gap-2 text-sm">
-										<span>Crear Cuenta</span>
-										<UserPlusIcon className="h-4 w-4" />
+									<button className="w-full py-4 px-6 bg-white hover:bg-gray-100 text-[#622599] font-bold rounded-2xl shadow-lg hover:shadow-white/20 transition-all duration-300 flex items-center justify-center gap-3 active:scale-95 group/btn overflow-hidden relative">
+										<div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#622599]/5 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
+										<span className="relative">Crear Cuenta</span>
+										<UserPlusIcon className="w-5 h-5 group-hover/btn:scale-110 transition-transform" />
 									</button>
 								</Link>
 							</div>

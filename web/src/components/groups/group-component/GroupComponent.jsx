@@ -21,10 +21,14 @@ function GroupComponent() {
     setReload(!reload)
   }
 
+  const onGroupDelete = () => {
+    setReload(!reload)
+  }
+
   return (
     <div className="flex flex-col w-full items-center justify-center">
       <GroupsForm onGroupCreation={onGroupCreation} />
-      <GroupsList groups={groups} />
+      <GroupsList groups={groups} onGroupDelete={onGroupDelete} />
     </div>
   );
 }

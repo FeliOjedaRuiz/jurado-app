@@ -10,6 +10,7 @@ import EventDetailPage from './pages/EventDetailPage';
 import EventVotePage from './pages/EventVotePage';
 import JuryDetailPage from './pages/JuryDetailPage';
 import JuryUpdatePage from './pages/JuryUpdatePage';
+import GroupUpdatePage from './pages/GroupUpdatePage';
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 					<Route path="/events-jury/:eventId" element={<EventVotePage />} />
 					<Route path="/juries/:juryId" element={<JuryDetailPage />} />
 					<Route path="/juries/:juryId/edit" element={<JuryUpdatePage />} />
+					<Route path="/groups/:groupId/edit" element={<GroupUpdatePage />} />
 				</Routes>
 			</AuthStore>
 		</>
