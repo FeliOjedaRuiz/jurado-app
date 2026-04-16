@@ -1,5 +1,6 @@
 const Event = require("../models/event.model");
 const User = require("../models/user.model");
+const { deleteFromCloudinary } = require("../middlewares/upload.mid");
 
 module.exports.create = (req, res, next) => {
   if (req.body) {
@@ -47,12 +48,22 @@ module.exports.delete = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.update = (req, res, next) => {
-  Object.assign(req.event, req.body);
-  req.event
-    .save()
-    .then((event) => res.json(event))
-    .catch(next);
+module.exports.update = async (req, res, next) => {
+  try {
+    if (req.cloudinaryUrl) {
+      if (req.event.imagePublicId) {
+        await deleteFromCloudinary(req.event.imagePublicId);
+      }
+      req.body.image = req.cloudinaryUrl;
+      req.body.imagePublicId = req.cloudinaryPublicId;
+    }
+
+    Object.assign(req.event, req.body);
+    const event = await req.event.save();
+    res.json(event);
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports.enableVoting = (req, res, next) => {

@@ -47,7 +47,7 @@ function PuntuationsStaging({ groupsList }) {
 
 	return (
 		<div className="mt-3 w-full max-w-md flex flex-col items-center justify-between border-2 border-brand-purple-600 rounded-xl p-3  pb-5">
-			<p className="text-2xl font-bold text-brand-purple-600">Mejor Música</p>
+			<p className="text-2xl font-bold text-brand-purple-600">Mejor Puesta en escena</p>
 			<div className="flex w-full justify-between text-xl p-2 text-brand-purple-700 font-bold  border-b-2 border-brand-purple-600">
 				<p>Grupo</p>
 				<p>puntos</p>

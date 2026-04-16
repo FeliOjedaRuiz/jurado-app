@@ -8,7 +8,16 @@ const listJuryEvents = (userId) => http.get(`/events/jury/${userId}`);
 
 const detail = (eventId) => http.get(`/events/${eventId}`);
 
-const update = (eventId, event) => http.patch(`/events/${eventId}`, event);
+const update = (eventId, data) => {
+  const formData = new FormData();
+
+  if (data.name !== undefined) formData.append("name", data.name);
+  if (data.image instanceof File) formData.append("image", data.image);
+
+  return http.patch(`/events/${eventId}`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+};
 
 const addJury = (eventId, event) =>
   http.patch(`/events/${eventId}/juries`, event);

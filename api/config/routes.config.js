@@ -10,6 +10,7 @@ const eventsMid = require("../middlewares/events.mid");
 const groupsMid = require("../middlewares/groups.mid");
 const puntuationsMid = require("../middlewares/puntuations.mid");
 const secure = require("../middlewares/secure.mid");
+const uploadMid = require("../middlewares/upload.mid");
 
 // USERS
 router.post("/users", users.create);
@@ -51,6 +52,8 @@ router.patch(
   secure.auth,
   eventsMid.exists,
   eventsMid.isAdmin,
+  uploadMid.single,
+  uploadMid.uploadToCloudinary,
   events.update
 );
 router.patch(

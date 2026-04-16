@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import GeneralLayout from '../components/layouts/GeneralLayout';
 import eventsService from '../services/events.js';
-import PuntuationCard from '../components/puntuations/puntuation-card/PuntuationCard.jsx';
 import { PuntuationsCarousel } from '../components/puntuations/puntuations-carousel/PuntuationsCarousel.jsx';
 
 function EventVotePage() {

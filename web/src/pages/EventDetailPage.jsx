@@ -22,16 +22,34 @@ function EventDetailPage() {
 		<GeneralLayout>
 			{event && (
 				<div className="flex flex-col bg-gray-100 w-full">
-					<div className="font-bold text-base xl:text-2xl p-2 xl:p-4 border-b-2 border-brand-purple-500  bg-gray-200 ">
+					{/* Header con link al editor y Avatar a la izquierda */}
+					<div className="flex items-center p-2 xl:p-4 border-b-2 border-brand-purple-500 bg-gray-200">
 						<Link
-							to={`/events`}
-							className="flex items-center text-brand-purple-800"
+							to={`/events-update/${eventId}`}
+							className="flex items-center text-brand-purple-800 w-full"
 						>
-							<p className=" mr-2">{event.name} </p>
-							<EditIcon className={`w-7 h-7 pb-1`} />
+							{/* Imagen tipo medalla / círculo */}
+							<div className="shrink-0 mr-3">
+								{event.image ? (
+									<img 
+										src={event.image} 
+										alt={event.name} 
+										className="w-12 h-12 rounded-full object-cover border-2 border-brand-purple-500 shadow-sm"
+									/>
+								) : (
+									<div className="w-12 h-12 bg-brand-purple-400 rounded-full flex items-center justify-center border-2 border-brand-purple-500 text-white font-bold text-xl shadow-sm">
+										{event.name ? event.name[0].toUpperCase() : ''}
+									</div>
+								)}
+							</div>
+							
+							<p className="mr-2 font-bold text-base xl:text-2xl">{event.name}</p>
+							<EditIcon className="w-7 h-7 pb-1 shrink-0 ml-auto" />
 						</Link>
 					</div>
-					<div className="overflow-scroll ">
+
+					{/* Tabs */}
+					<div className="overflow-scroll">
 						<EventDetailTabs />
 					</div>
 				</div>

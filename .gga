@@ -1,0 +1,24 @@
+# Gentleman Guardian Angel Configuration
+# Jurado-App — Proyecto de gestión de jurado
+
+# AI Provider
+# gemini: funciona con @google/gemini-cli (ya instalado globalmente)
+PROVIDER="gemini"
+
+# Patrones de archivos a revisar
+FILE_PATTERNS="*.ts,*.tsx,*.js,*.jsx"
+
+# Excluir tests, tipos generados, y build artifacts
+EXCLUDE_PATTERNS="*.test.ts,*.spec.ts,*.test.tsx,*.spec.tsx,*.d.ts,dist/*,build/*,node_modules/*"
+
+# Archivo con reglas de revisión
+RULES_FILE="AGENTS.md"
+
+# Modo estricto: falla si la respuesta de la IA es ambigua
+STRICT_MODE="true"
+
+# Timeout en segundos para la respuesta de la IA
+TIMEOUT="300"
+
+# Rama base para --pr-mode
+PR_BASE_BRANCH="main"
