@@ -29,13 +29,11 @@ function PuntuationsComponent() {
 	}, []);
 
 	const onSwitch = () => {
-		const event = {};
-		event.open = !open;
+		const newOpen = !open;
 		eventServices
-			.update(eventId, event)
+			.toggleVoting(eventId, newOpen)
 			.then((event) => {
-				console.log(`Votación habilitada: ${event.open}`);
-				setOpen(!open);
+				setOpen(event.open);
 			})
 			.catch((error) => console.error(error));
 	};
@@ -47,7 +45,7 @@ function PuntuationsComponent() {
 					Habilitar votación
 				</p>
 				{load && (
-					<Switch color="purple" onClick={onSwitch} defaultChecked={open} />
+					<Switch color="purple" onChange={onSwitch} checked={open} />
 				)}
 			</div>
 			{/* <PuntuationsOnOff onSwitch={onSwitch} enable={enable} /> */}

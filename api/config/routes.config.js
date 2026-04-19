@@ -64,6 +64,13 @@ router.patch(
   usersMid.juryExists,
   events.updateJuries
 );
+router.patch(
+  "/events/:eventId/voting",
+  secure.auth,
+  eventsMid.exists,
+  eventsMid.isAdmin,
+  events.enableVoting
+);
 router.delete(
   "/events/:id",
   secure.auth,

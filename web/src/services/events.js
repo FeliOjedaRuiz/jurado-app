@@ -19,6 +19,9 @@ const update = (eventId, data) => {
   });
 };
 
+const toggleVoting = (eventId, isOpen) =>
+  http.patch(`/events/${eventId}/voting`, { open: isOpen });
+
 const addJury = (eventId, event) =>
   http.patch(`/events/${eventId}/juries`, event);
 
@@ -28,5 +31,6 @@ export default {
   listJuryEvents,
   detail,
   update,
+  toggleVoting,
   addJury,
 };
